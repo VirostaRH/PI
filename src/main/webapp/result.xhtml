@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	>
+	<h:head>
+		<title>Resultados</title>
+		<meta author="Héctor Ruiz"/>
+		<meta charset="utf-8"/>
+		<meta name="description" content="App alumn generalController"/>
+		
+	</h:head>
+	<h:body>
+		<header class="row">
+			<h1 class="col-xs-12">Resultado de búsqueda</h1>
+		</header>
+		<h:outputText value="#{generalController.alumnos eq null}"/>
+		<h:dataTable value = "#{generalController.alumnos}" var = "em"
+   			headerClass = "Alumnos"
+   			rowClasses = "nombre,apellido">
+	   		<h:column>    				
+				<f:facet name = "header">DNI</f:facet>
+				#{em.id_alumno}
+				<f:facet name = "header">Nombre</f:facet>
+				#{em.nombre}
+				<f:facet name = "header">Apellido1</f:facet>
+				#{em.apellido1}
+				<f:facet name = "header">Apellido2</f:facet>
+				#{em.apellido2}
+				<f:facet name = "header">Fecha Nac</f:facet>
+				#{em.fnac}
+				<f:facet name = "header">Dirección</f:facet>
+				#{em.direccion}
+				<f:facet name = "header">Localidad</f:facet>
+				#{em.localidad}
+				<f:facet name = "header">Provincia</f:facet>
+				#{em.provincia}
+				<f:facet name = "header">CP</f:facet>
+				#{em.cp}
+				<f:facet name = "header">TLF</f:facet>
+				#{em. tlf}
+				<f:facet name = "header">Mail1</f:facet>
+				#{em.email1}
+				<f:facet name = "header">Mail2</f:facet>
+				#{em.email2}
+				<f:facet name = "header">Disponibilidad</f:facet>
+				#{em.disponibilidad}
+				<f:facet name = "header">Observaciones</f:facet>
+				#{em.observaciones}
+	   		</h:column>
+			</h:dataTable>
+		
+
+		<footer>Fdo: H</footer>
+	</h:body>
+</html>
