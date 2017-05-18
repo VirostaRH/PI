@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsf="http://java.sun.com/jsf/jstl/core">
+	<h:head>
+		<title>Añadir OT</title>
+		<meta author="Héctor Ruiz"/>
+		<meta charset="utf-8"/>
+		<meta name="description" content="App alumn generalController"/>
+	</h:head>
+	<h:body>
+		<h1 class="col-xs-12">Crear OT:</h1>
+		<h:form>
+			<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest">
+		   		<h:column rendered="#{alum.id_alumno != ''}">
+					<f:facet name = "header">Nombre</f:facet>
+					
+				</h:column>
+				<h:column>
+					<f:facet name = "header"></f:facet>
+					
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Descripcion</f:facet>
+					
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Centro</f:facet>
+					
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</h:body>
+</html>

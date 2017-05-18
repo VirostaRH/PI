@@ -1,25 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:h="http://java.sun.com/jsf/html" 
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:jsf="http://java.sun.com/jsf/jstl/core">
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 	<h:head>
-		<title>Alumnado.</title>
+		<title>Edición de perfil.</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
 		<meta name="description" content="App alumn generalController"/>
 	</h:head>
 	<h:body>
 		<header class="row">
-			<h1>Bienvenido</h1>
+			<h1 class="col-xs-12">Edición de perfil de usuario</h1>
 		</header>
 		<section class="row">
-			<article>
-				<h:form>
-					<h:commandButton action="#{generalController.consultarCV}" value="Consultar tu CV"/>
-					<h:commandButton action="#{generalController.editarCV}" value="Editar tu CV"/>
-					<h:commandButton action="#{generalController.editarPerfil}" value="Editar perfil de usuario"/>
+			<article class="col-xs-10 col-xs-offset-1">
+				<h:form class="col-xs-12">
+					<label for="select">
+						Error en actualización
+					</label>
+					<td><h:commandButton action="#{generalController.retornoPrincipal}" value="Volver"/></td>
 				</h:form>
 			</article>
 		</section>

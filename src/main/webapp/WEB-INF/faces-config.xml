@@ -9,6 +9,12 @@
         <param-value>bluesky</param-value>
     </context-param>
 
+	<managed-bean>
+	    <managed-bean-name>alumno</managed-bean-name>
+	    <managed-bean-class>com.proyecto.model.Alumno</managed-bean-class>
+	    <managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
@@ -23,8 +29,60 @@
 	<navigation-rule>
 		<from-view-id>/admin.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>login</from-outcome>
+			<from-outcome>result</from-outcome>
 			<to-view-id>/result.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/vistaAlumnado.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>verCV</from-outcome>
+			<to-view-id>/verCV.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>edicionPerfil</from-outcome>
+			<to-view-id>/edicionPerfil.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editaCV</from-outcome>
+			<to-view-id>/editaCV.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/editaCV.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>creaAptitud</from-outcome>
+			<to-view-id>/creaAptitud.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>creaOTitulacion</from-outcome>
+			<to-view-id>/creaOTitulacion.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/edicionPerfil.xhtml</from-view-id>
+			<navigation-case>
+			<from-outcome>updateOk</from-outcome>
+			<to-view-id>/updateOk.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>updateKo</from-outcome>
+			<to-view-id>/updateKo.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>edicionPerfil</from-outcome>
+			<to-view-id>/edicionPerfil.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/loginKo.xhtml</from-view-id>
+			<navigation-case>
+			<from-outcome>vistaAlumnado</from-outcome>
+			<to-view-id>/vistaAlumnado.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>edicionPerfil</from-outcome>
+			<to-view-id>/edicionPerfil.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

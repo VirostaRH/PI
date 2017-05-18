@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<title>Resultados</title>
+		<meta author="Héctor Ruiz"/>
+		<meta charset="utf-8"/>
+		<meta name="description" content="App alumn generalController"/>
+	</h:head>
+	<h:body>
+		<h1 class="col-xs-12">Tus datos personales</h1>
+		<h:form>
+			<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest">
+		   		<h:column rendered="#{alum.id_alumno != ''}">
+					<f:facet name = "header">DNI</f:facet>
+					<h:inputText value="#{alum.id_alumno}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Nombre</f:facet>
+					<h:inputText value="#{alum.nombre}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Apellido1</f:facet>
+					<h:inputText value="#{alum.apellido1}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Apellido2</f:facet>
+					<h:inputText value="#{alum.apellido2}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Fecha Nac</f:facet>
+					<h:inputText value="#{alum.fnac}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Dirección</f:facet>
+					<h:inputText value="#{alum.direccion}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Localidad</f:facet>
+					<h:inputText value="#{alum.localidad}"/>
+				</h:column>
+			</h:dataTable>
+			<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest">
+				<h:column>
+					<f:facet name = "header">Provincia</f:facet>
+					<h:inputText value="#{alum.provincia}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">CP</f:facet>
+					<h:inputText value="#{alum.cp}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">TLF</f:facet>
+					<h:inputText value="#{alum.tlf}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Mail1</f:facet>
+					<h:inputText value="#{alum.email1}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Mail2</f:facet>
+					<h:inputText value="#{alum.email2}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Disponibilidad</f:facet>
+					<h:selectBooleanCheckbox value="#{alum.disponibilidad}">
+		        	</h:selectBooleanCheckbox>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Observaciones</f:facet>
+					<h:inputText value="#{alum.observaciones}"/>
+				</h:column>
+			</h:dataTable>
+			
+			<h1>Tus ciclos hechos.</h1>
+			
+			<h:dataTable value = "#{generalController.ciclos}" var = "c"
+				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.ciclos}">
+				<h:column>
+					<f:facet name = "header" >Siglas del ciclo</f:facet>
+					#{c.nombre_ciclo}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Nombre del ciclo</f:facet>
+					<h:selectOneMenu value="#{c.siglas}">
+						<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
+						<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
+						<f:selectItem itemValue="ASCT" itemLabel="ASCT"></f:selectItem>
+						<f:selectItem itemValue="ASIR" itemLabel="ASIR"></f:selectItem>
+						<f:selectItem itemValue="EVA" itemLabel="EVA"></f:selectItem>
+						<f:selectItem itemValue="GA" itemLabel="GA"></f:selectItem>
+						<f:selectItem itemValue="IEA" itemLabel="IEA"></f:selectItem>
+						<f:selectItem itemValue="MCO" itemLabel="MCO"></f:selectItem>
+						<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
+						<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
+					</h:selectOneMenu>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Fecha fin</f:facet>
+					<h:inputText value="#{c.fecha_fin}"/>
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Actualizar</f:facet>
+					<h:commandButton value="Guardar" action="#{generalController.actualizarCiclo}"/>
+					<h:commandButton value="Borrar" action="#{generalController.borrarCiclo(siglas, anio)}"/>
+				</h:column>
+			</h:dataTable>
+
+
+			<h:outputText value="Añade ciclo - "/>
+			<h:selectOneMenu value="#{generalController.ciclo}">
+				<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
+				<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
+				<f:selectItem itemValue="ASCT" itemLabel="ASCT"></f:selectItem>
+				<f:selectItem itemValue="ASIR" itemLabel="ASIR"></f:selectItem>
+				<f:selectItem itemValue="EVA" itemLabel="EVA"></f:selectItem>
+				<f:selectItem itemValue="GA" itemLabel="GA"></f:selectItem>
+				<f:selectItem itemValue="IEA" itemLabel="IEA"></f:selectItem>
+				<f:selectItem itemValue="MCO" itemLabel="MCO"></f:selectItem>
+				<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
+				<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
+			</h:selectOneMenu>
+			<h:outputText value="Añade año de finalización - "/>
+			<h:inputText  value="#{generalController.fecha_fin}" label = "Date" >
+			<jsf:convertDateTime pattern="dd-mm-yyyy"></jsf:convertDateTime>
+			</h:inputText>
+			<h:commandButton value="Guardar" action="#{generalController.guardarCiclo}"/>
+		</h:form>
+		<br/>
+		<h:form>	
+			<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
+				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}">
+				<h:column>
+					<f:facet name = "header">Nombre de la aptitud</f:facet>
+					#{ap.nombre_apt}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Descripción de la aptitud</f:facet>
+					#{ap.descripcion}
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		<h:form>
+			<h:outputText value="Añade aptitud - "/>
+			<h:inputText  value="#{generalController.nombreApt}"/>
+			<h:outputText value="Inserte descripción de aptitud- "/>
+			<h:inputText  value="#{generalController.descripcionApt}"/>
+			<h:selectOneMenu value="#{generalController.nivel_apt}">
+				<f:selectItem itemValue="1" itemLabel="Bajo"></f:selectItem>
+				<f:selectItem itemValue="2" itemLabel="Medio"></f:selectItem>
+				<f:selectItem itemValue="3" itemLabel="Alto"></f:selectItem>
+			</h:selectOneMenu>
+			<h:commandButton value="Guardar aptitud" action="#{generalController.guardarApt}"/>
+		</h:form>
+		<br/>
+		<h:form>
+			<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
+				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}">
+				<h:column>
+					<f:facet name = "header">Otra titulación</f:facet>
+					#{otit.siglas}>
+				</h:column>
+			</h:dataTable>
+
+			<br/>
+			
+			<h:commandButton value="Añadir otra titulacion" rendered="#{empty generalController.otra_titulacion}" action="#{generalController.crearNuevaTitulacion}"/>
+
+			<br/>
+			<h:commandButton action="#{generalController.validateUsernamePassword}" value="Inicio"/>
+		</h:form>
+	</h:body>
+</html>
