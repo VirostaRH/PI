@@ -106,7 +106,7 @@
 				<h:column>
 					<f:facet name = "header">Actualizar</f:facet>
 					<h:commandButton value="Guardar" action="#{generalController.actualizarCiclo}"/>
-					<h:commandButton value="Borrar" action="#{generalController.borrarCiclo(siglas, anio)}"/>
+					<h:commandButton value="Borrar" action="#{generalController.borrarCiclo(c.siglas, c.fecha_fin)}"/>
 				</h:column>
 			</h:dataTable>
 

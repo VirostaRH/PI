@@ -11,7 +11,7 @@ public class OTitulacion
 	private String descripcion;
 	private int id_centro;
 
-	public OTitulacion(int i, String nombre, String descripcion, int n_centro)
+	public OTitulacion(int i, String nombre, String descripcion, String n_centro)
 	{
 		this.id_OTitulacion = i;
 		this.nombre = nombre;

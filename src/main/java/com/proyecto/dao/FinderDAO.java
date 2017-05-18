@@ -222,7 +222,7 @@ public class FinderDAO {
             ResultSet rs = ps.executeQuery();
             
             if (rs.next()) {
-                c.setId_centro(Integer.parseInt(rs.getInt("id_centro")));
+                c.setId_centro(rs.getInt("id_centro"));
                 c.setNombre_centro(rs.getString("nombre_centro"));
             }
             else

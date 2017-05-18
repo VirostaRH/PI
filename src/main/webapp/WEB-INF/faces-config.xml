@@ -3,12 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 	http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-	
-	<context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>bluesky</param-value>
-    </context-param>
-
 	<managed-bean>
 	    <managed-bean-name>alumno</managed-bean-name>
 	    <managed-bean-class>com.proyecto.model.Alumno</managed-bean-class>
@@ -58,21 +52,26 @@
 			<from-outcome>creaOTitulacion</from-outcome>
 			<to-view-id>/creaOTitulacion.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome></from-outcome>
+			<to-view-id>/editaCV.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/edicionPerfil.xhtml</from-view-id>
 			<navigation-case>
-			<from-outcome>updateOk</from-outcome>
-			<to-view-id>/updateOk.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>updateKo</from-outcome>
-			<to-view-id>/updateKo.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>edicionPerfil</from-outcome>
-			<to-view-id>/edicionPerfil.xhtml</to-view-id>
-		</navigation-case>
+				<from-outcome>updateOk</from-outcome>
+				<to-view-id>/updateOk.xhtml</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>updateKo</from-outcome>
+				<to-view-id>/updateKo.xhtml</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>edicionPerfil</from-outcome>
+				<to-view-id>/edicionPerfil.xhtml</to-view-id>
+			</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/loginKo.xhtml</from-view-id>

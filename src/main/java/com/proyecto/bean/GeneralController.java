@@ -244,7 +244,6 @@ public class GeneralController implements Serializable {
   public String crearBusqueda()
   {
     Busqueda b = new Busqueda (ciclo,dispo,aptitud,edad);
-    //anteriormente, declarábamos el arraylist aquí también, craso error, al hacer eso, reducíamos el arraylist al límite de este método (que estoy amamonado)
     setAlumnos(FinderDAO.buscar(b));
     return "result";
   }
@@ -306,31 +305,30 @@ public class GeneralController implements Serializable {
   
   //go to editarCV
   public String editarCV()
-  {    
-   
+  {
     alumno=FinderDAO.buscarUno(user);
     alumnos = new ArrayList<Alumno>();
     alumnos.add(alumno);
     ciclos=FinderDAO.buscarCiclosUser(user);
     aptitudes =FinderDAO.buscarAptUser(user);
-    System.out.println(aptitudes.size());
     return "editaCV";
   }
 
-  //go to Cambiar contraseña 
+  //go to Cambiar contraseña (TESTEADO OK)
   public String editarPerfil()
   {
     return "edicionPerfil";
   }
 
   
-  //elimina ciclo
-  public void borrarCiclo(String s, String a)
+  //elimina ciclo (TESTEADO OK)
+  public String borrarCiclo(String s, String a)
   {
-    System.out.println("Intentar borrar con "+s+" - "+ getUser() + " - "+ a);
     RemoveDAO.removeCicloUser(FinderDAO.buscarCiclo(s), getUser(), a);
-    ciclos.remove(FinderDAO.buscarCiclo(getCiclo()));
+    ciclos = FinderDAO.buscarCiclosUser(getUser());
+    return null;
   }  
+
   //go to vistaAlumnado
   public String retornoPrincipal()
   {
@@ -339,17 +337,13 @@ public class GeneralController implements Serializable {
 
   public String crearNuevaAptitud()
   {
-    //Apt a = FinderDAO.buscarApt(getNombreApt());
-    //a.setNivel(getNivel_apt());
-    //InsertDAO.insertaAptitud(a);
+    //Por finalizar
     return "creaAptitud";
   }
 
   public String crearNuevaTitulacion()
   {
-    //Apt a = FinderDAO.buscarApt(getNombreApt());
-    //a.setNivel(getNivel_apt());
-    //InsertDAO.insertaAptitud(a);
+    //Por finalizar
     return "creaOTitulacion";
   }
   //validate login
