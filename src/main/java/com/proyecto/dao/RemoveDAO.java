@@ -38,23 +38,25 @@ public class RemoveDAO
         return c;
     }
 
-    public static Apt removeAptUser(Apt a, String user)
+    public static Boolean removeAptUser(int a, String user)
     {   
-        Apt aptitud = a;
+        Apt aptitud = new Apt();
+        aptitud.setId_apt(a);
         Connection con = null;
         PreparedStatement ps = null;
  
         try{
             con = DataConnect.getConnection();
             
-            ps = con.prepareStatement("delete from adquiere_aptitud where id_alumno = ? and id_apt = ?");
+            ps = con.prepareStatement("delete from adquiere_aptitud where id_alumno = ? and id_aptitud = ?");
             ps.setString(1, user);
-            ps.setInt(2, a.getId_apt());
+            ps.setInt(2, aptitud.getId_apt());
 
             int rs = ps.executeUpdate();
 
             if (rs != 0) {
                 System.out.println("Delete ok");
+                return true;
             }
 
         } catch (SQLException ex) {
@@ -62,7 +64,7 @@ public class RemoveDAO
         } finally {
             DataConnect.close(con);
         }
-        return a;
+        return false;
     }
 
     public static OTitulacion removeOTUser(OTitulacion ot, String user)

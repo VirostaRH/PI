@@ -1,0 +1,16 @@
+com/proyecto/model/Alumno.class
+com/proyecto/dao/RemoveDAO.class
+com/proyecto/dao/InsertDAO.class
+com/proyecto/dao/LoginDAO.class
+com/proyecto/model/Centro.class
+com/proyecto/bean/GeneralController.class
+com/proyecto/model/Apt.class
+com/proyecto/utilidades/SessionUtils.class
+com/proyecto/dao/FinderDAO.class
+com/proyecto/utilidades/DataConnect.class
+com/proyecto/model/OTitulacion.class
+com/proyecto/filter/AuthorizationFilter.class
+com/proyecto/model/Ciclo.class
+com/proyecto/utilidades/Parseador.class
+com/proyecto/model/Busqueda.class
+com/proyecto/dao/UpdatePasswdDAO.class

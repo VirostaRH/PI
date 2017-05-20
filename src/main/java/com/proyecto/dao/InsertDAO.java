@@ -10,8 +10,6 @@ import java.sql.SQLException;
 
 public class InsertDAO
 {
-
-
     public static boolean insertCentro(String n)
     {
         Centro centro = new Centro();    
@@ -30,7 +28,7 @@ public class InsertDAO
             }
 
         } catch (SQLException ex) {
-            System.out.println("Login KO-->" + ex.getMessage());
+            System.out.println("CENTRO KO" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
@@ -57,7 +55,7 @@ public class InsertDAO
             }
 
         } catch (SQLException ex) {
-            System.out.println("Login KO-->" + ex.getMessage());
+            System.out.println("APTITUD KO" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
@@ -65,7 +63,7 @@ public class InsertDAO
         return false;
     }
  
-    public static Ciclo addCicloUser(Ciclo c, String user)
+    public static boolean addCicloUser(Ciclo c, String user)
     {
         Ciclo ciclo = c;
         Connection con = null;
@@ -84,17 +82,18 @@ public class InsertDAO
 
             if (rs != 0) {
                 System.out.println("Insert ok");
+                return true;
             }
 
         } catch (SQLException ex) {
-            System.out.println("Login KO-->" + ex.getMessage());
+            System.out.println("INSERT CICLO KO" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
-        return c;
+        return false;
     }
 
-    public static Apt addAptUser(Apt a, String user)
+    public static boolean addAptUser(Apt a, String user)
     {
         
         Apt aptitud = a;
@@ -112,17 +111,15 @@ public class InsertDAO
             int rs = ps.executeUpdate();
 
             if (rs != 0) {
-                System.out.println("Insert ok");
-
+                return true;
             }
 
         } catch (SQLException ex) {
-            System.out.println("Login KO-->" + ex.getMessage());
+            System.out.println("Insert APT KO-->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
-
-        return a;
+        return false;
     }
 
 }

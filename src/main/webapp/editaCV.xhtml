@@ -10,20 +10,22 @@
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
 		<meta name="description" content="App alumn generalController"/>
+		<h:outputStylesheet library="css" name="style.css"/>
+		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
-		<h1 class="col-xs-12">Tus datos personales</h1>
 		<h:form>
-			<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest">
-		   		<h:column rendered="#{alum.id_alumno != ''}">
+			<h2>Tus datos personales</h2>
+			<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" rendered="#{alum.id_alumno != ''}">
+		   		<h:column>
 					<f:facet name = "header">DNI</f:facet>
-					<h:inputText value="#{alum.id_alumno}"/>
+					<h:inputText value="#{alum.id_alumno}" styleClass="css1"/>
 				</h:column>
-				<h:column>
+				<h:column class="row">
 					<f:facet name = "header">Nombre</f:facet>
-					<h:inputText value="#{alum.nombre}"/>
+					<h:inputText value="#{alum.nombre}" styleClass="css1"/>
 				</h:column>
-				<h:column>
+				<h:column class="row">
 					<f:facet name = "header">Apellido1</f:facet>
 					<h:inputText value="#{alum.apellido1}"/>
 				</h:column>
@@ -44,7 +46,7 @@
 					<h:inputText value="#{alum.localidad}"/>
 				</h:column>
 			</h:dataTable>
-			<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest">
+			<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" rendered="#{alum.id_alumno != ''}">
 				<h:column>
 					<f:facet name = "header">Provincia</f:facet>
 					<h:inputText value="#{alum.provincia}"/>
@@ -76,7 +78,7 @@
 				</h:column>
 			</h:dataTable>
 			
-			<h1>Tus ciclos hechos.</h1>
+			<h2>Tus ciclos hechos.</h2>
 			
 			<h:dataTable value = "#{generalController.ciclos}" var = "c"
 				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.ciclos}">
@@ -86,65 +88,60 @@
 				</h:column>
 				<h:column>
 					<f:facet name = "header">Nombre del ciclo</f:facet>
-					<h:selectOneMenu value="#{c.siglas}">
-						<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
-						<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
-						<f:selectItem itemValue="ASCT" itemLabel="ASCT"></f:selectItem>
-						<f:selectItem itemValue="ASIR" itemLabel="ASIR"></f:selectItem>
-						<f:selectItem itemValue="EVA" itemLabel="EVA"></f:selectItem>
-						<f:selectItem itemValue="GA" itemLabel="GA"></f:selectItem>
-						<f:selectItem itemValue="IEA" itemLabel="IEA"></f:selectItem>
-						<f:selectItem itemValue="MCO" itemLabel="MCO"></f:selectItem>
-						<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
-						<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
-					</h:selectOneMenu>
+					#{c.siglas}
 				</h:column>
 				<h:column>
 					<f:facet name = "header">Fecha fin</f:facet>
-					<h:inputText value="#{c.fecha_fin}"/>
+					#{c.fecha_fin}
 				</h:column>
 				<h:column>
-					<f:facet name = "header">Actualizar</f:facet>
-					<h:commandButton value="Guardar" action="#{generalController.actualizarCiclo}"/>
 					<h:commandButton value="Borrar" action="#{generalController.borrarCiclo(c.siglas, c.fecha_fin)}"/>
 				</h:column>
 			</h:dataTable>
-
-
-			<h:outputText value="Añade ciclo - "/>
-			<h:selectOneMenu value="#{generalController.ciclo}">
-				<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
-				<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
-				<f:selectItem itemValue="ASCT" itemLabel="ASCT"></f:selectItem>
-				<f:selectItem itemValue="ASIR" itemLabel="ASIR"></f:selectItem>
-				<f:selectItem itemValue="EVA" itemLabel="EVA"></f:selectItem>
-				<f:selectItem itemValue="GA" itemLabel="GA"></f:selectItem>
-				<f:selectItem itemValue="IEA" itemLabel="IEA"></f:selectItem>
-				<f:selectItem itemValue="MCO" itemLabel="MCO"></f:selectItem>
-				<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
-				<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
-			</h:selectOneMenu>
-			<h:outputText value="Añade año de finalización - "/>
-			<h:inputText  value="#{generalController.fecha_fin}" label = "Date" >
-			<jsf:convertDateTime pattern="dd-mm-yyyy"></jsf:convertDateTime>
-			</h:inputText>
-			<h:commandButton value="Guardar" action="#{generalController.guardarCiclo}"/>
-		</h:form>
-		<br/>
-		<h:form>	
-			<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
-				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}">
-				<h:column>
-					<f:facet name = "header">Nombre de la aptitud</f:facet>
-					#{ap.nombre_apt}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Descripción de la aptitud</f:facet>
-					#{ap.descripcion}
-				</h:column>
-			</h:dataTable>
-		</h:form>
-		<h:form>
+	</h:form>
+	<h:form>
+		<h:outputText value="Añade ciclo - "/>
+		<h:selectOneMenu value="#{generalController.ciclo}">
+			<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
+			<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
+			<f:selectItem itemValue="ASCT" itemLabel="ASCT"></f:selectItem>
+			<f:selectItem itemValue="ASIR" itemLabel="ASIR"></f:selectItem>
+			<f:selectItem itemValue="EVA" itemLabel="EVA"></f:selectItem>
+			<f:selectItem itemValue="GA" itemLabel="GA"></f:selectItem>
+			<f:selectItem itemValue="IEA" itemLabel="IEA"></f:selectItem>
+			<f:selectItem itemValue="MCO" itemLabel="MCO"></f:selectItem>
+			<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
+			<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
+		</h:selectOneMenu>
+		<h:outputText value="Añade año de finalización - "/>
+		<h:inputText value="#{generalController.fecha_fin}"/>
+		<h:commandButton value="Guardar" action="#{generalController.guardarCiclo}"/>
+	</h:form>
+	<h:form>	
+			<h1>Tus aptitudes.</h1>
+			
+	
+				<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
+					headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}">
+					<h:column>
+						<f:facet name = "header">Nombre de la aptitud</f:facet>
+						#{ap.nombre_apt}
+					</h:column>
+					<h:column>
+						<f:facet name = "header">Descripción de la aptitud</f:facet>
+						#{ap.descripcion}
+					</h:column>
+					<h:column>
+						<f:facet name = "header">Lvl de la aptitud</f:facet>
+						<h:outputText rendered="#{ap.nivel == 1}" value="Bajo"/>
+						<h:outputText rendered="#{ap.nivel == 2}" value="Medio"/>
+						<h:outputText rendered="#{ap.nivel == 3}" value="Alto"/>
+					</h:column>
+					<h:column>
+						<f:facet name = "header">Actualizar</f:facet>
+						<h:commandButton value="Borrar" action="#{generalController.borrarApt(ap.nombre_apt)}"/>
+					</h:column>
+				</h:dataTable>
 			<h:outputText value="Añade aptitud - "/>
 			<h:inputText  value="#{generalController.nombreApt}"/>
 			<h:outputText value="Inserte descripción de aptitud- "/>
@@ -155,9 +152,10 @@
 				<f:selectItem itemValue="3" itemLabel="Alto"></f:selectItem>
 			</h:selectOneMenu>
 			<h:commandButton value="Guardar aptitud" action="#{generalController.guardarApt}"/>
-		</h:form>
-		<br/>
-		<h:form>
+	</h:form>
+	<h:form>
+		<h1>Otras titulaciones.</h1>
+
 			<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
 				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}">
 				<h:column>
@@ -165,13 +163,17 @@
 					#{otit.siglas}>
 				</h:column>
 			</h:dataTable>
-
-			<br/>
-			
-			<h:commandButton value="Añadir otra titulacion" rendered="#{empty generalController.otra_titulacion}" action="#{generalController.crearNuevaTitulacion}"/>
-
-			<br/>
-			<h:commandButton action="#{generalController.validateUsernamePassword}" value="Inicio"/>
+			<h:outputText value="Añade OT - "/>
+			<h:inputText  value="#{generalController.otraT}"/>
+			<h:outputText value="Añade descripción de la OT"/>
+			<h:inputText  value="#{generalController.descripcionOtraT}"/>
+			<h:commandButton value="Guardar aptitud" action="#{generalController.guardarApt}"/>
+			<h:outputText value="Centro"/>
+			<h:inputText  value="#{generalController.centro}"/>
+			<h:outputText value="Fecha fin"/>
+			<h:inputText  value="#{generalController.fecha_fin}"/>
+		
+			<h:commandLink action="vistaAlumnado" value="Inicio"/>
 		</h:form>
 	</h:body>
 </html>

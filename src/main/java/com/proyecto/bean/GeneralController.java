@@ -42,6 +42,9 @@ public class GeneralController implements Serializable {
   private int id_apt;
   private int nivel_apt;
 
+  private String otraT;
+  private String descripcionOtraT;
+  private String centro;
 
   private ArrayList <Alumno> alumnos;
   private ArrayList <Ciclo> ciclos;
@@ -184,6 +187,32 @@ public class GeneralController implements Serializable {
     this.existeCV = existe;
   }
 
+  public void setOtraT(String n)
+  {
+    this.otraT = n;
+  }
+  public void setDescripcionOtraT(String d)
+  {
+    this.descripcionOtraT = d;
+  }
+  public void setCentro(String c)
+  {
+    this.centro = c;
+  }
+
+  public String getOtraT()
+  {
+    return otraT;
+  }
+  public String getDescripcionOtraT()
+  {
+    return descripcionOtraT;
+  }
+  public String getCentro()
+  {
+    return centro;
+  }
+
   public String getOldPasswd() {
     return oldPasswd;
   }
@@ -249,23 +278,26 @@ public class GeneralController implements Serializable {
   }
 
 
-  //guarda ciclo
-  public void guardarCiclo()
+  //crea ciclo
+  public String guardarCiclo()
   {
-    if(!fecha_fin.equals(""))
+    Ciclo cTemp = FinderDAO.buscarCiclo(ciclo);
+    if(!fecha_fin.equals(null) && !fecha_fin.equals(""))
     {
-      Ciclo cTemp = FinderDAO.buscarCiclo(ciclo);
       cTemp.setFecha_fin(getFecha_fin());
-      ciclos.add(cTemp);
-      InsertDAO.addCicloUser(cTemp, user);
+      if(InsertDAO.addCicloUser(cTemp, user))
+        {
+          ciclos.add(cTemp);
+        }
     }
     else
     {
       System.out.println("Error.");
     }
+    return null;
   }
 
-  //guarda aptitud
+  //crea aptitud
   public String guardarApt()
   {
     if(!descripcionApt.equals(""))
@@ -277,21 +309,23 @@ public class GeneralController implements Serializable {
         InsertDAO.insertApt(getNombreApt(), getDescripcionApt());
         aptTemp = FinderDAO.buscarApt(getNombreApt(), getDescripcionApt());
       }
-      InsertDAO.addAptUser(aptTemp, getUser());
-      aptTemp.setNivel(getNivel_apt());
-      aptitudes.add(aptTemp);
+      else
+      {
+        if (InsertDAO.addAptUser(aptTemp, getUser()))
+        {
+          aptTemp.setNivel(getNivel_apt());
+          aptitudes.add(aptTemp);
+        }
+        else
+        {
+          System.out.println("Error, aptitud duplicada");
+        }
+      }
     }
-    else
-    {
-      System.out.println("Error.");
-    }
-    return "editaCV";
+    return null;
   }
-
-  public void actualizarCiclo()
-  {}
  
-  //go to verCV
+  //go to consulta todos los datos de un alumno
   public String consultarCV()
   {
     alumno=FinderDAO.buscarUno(user);
@@ -303,7 +337,7 @@ public class GeneralController implements Serializable {
     return "verCV";
   }
   
-  //go to editarCV
+  //go to vista editarCV
   public String editarCV()
   {
     alumno=FinderDAO.buscarUno(user);
@@ -329,10 +363,17 @@ public class GeneralController implements Serializable {
     return null;
   }  
 
+  public String borrarApt(String a)
+  {
+    Apt aux = FinderDAO.buscarApt(a, "");
+    RemoveDAO.removeAptUser(aux.getId_apt(), getUser());
+    aptitudes = FinderDAO.buscarAptUser(getUser());
+    return null;
+  }  
   //go to vistaAlumnado
   public String retornoPrincipal()
   {
-    return "vistaAlumnado";
+    return "vistaAlumnado.hxtml";
   }
 
   public String crearNuevaAptitud()
