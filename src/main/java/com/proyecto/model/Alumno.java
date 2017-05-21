@@ -156,6 +156,6 @@ public class Alumno{
 
 	public String toString()
 	{
-		return getId_alumno()+" - "+getNombre();
+		return getNombre() + "-" + getApellido1() + "-" + getApellido2() + "-" +getFnac() + "-" + getDireccion() + "-" + getLocalidad() + "-" + getCp() + "-" + getProvincia() + "-" + getTlf() + "-" + getEmail1() + "-" +getEmail2() + "-" + isDisponibilidad() + "-" + getObservaciones() + "-" + getId_alumno();
 	}
 }

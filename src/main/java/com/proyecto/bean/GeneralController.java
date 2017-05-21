@@ -51,6 +51,9 @@ public class GeneralController implements Serializable {
   private ArrayList <OTitulacion> otra_titulacion = new ArrayList <OTitulacion>();
   private ArrayList <Apt> aptitudes = new ArrayList();
 
+
+  /*Listado de getter y setter del bean controller.*/
+  /**/
   public void setMsg(String msg)
   {
     this.msg = msg;
@@ -60,6 +63,7 @@ public class GeneralController implements Serializable {
     return msg;
   }
 
+  /**/
   public String getPwd() {
     return pwd;
   }
@@ -76,6 +80,7 @@ public class GeneralController implements Serializable {
     this.user = user;
   }
 
+  /**/
   public void setAptitud(String aptitud)
   {
     this.aptitud = aptitud;
@@ -86,6 +91,7 @@ public class GeneralController implements Serializable {
     return aptitud;
   }
 
+  /**/
   public void setCiclo(String c)
   {
     this.ciclo = c;
@@ -106,6 +112,7 @@ public class GeneralController implements Serializable {
     this.fecha_fin = fecha_fin;
   }
 
+  /**/
   public void setCiclos(ArrayList <Ciclo> c)
   {
     this.ciclos = c;
@@ -156,6 +163,7 @@ public class GeneralController implements Serializable {
     return edad;
   }
 
+
   public ArrayList <Alumno> getAlumnos()
   {
     return alumnos;
@@ -165,7 +173,6 @@ public class GeneralController implements Serializable {
   {
     this.alumnos=p;
   }
-
 
   public void setAlumno(Alumno a)
   {
@@ -325,6 +332,7 @@ public class GeneralController implements Serializable {
     return null;
   }
  
+
   //go to consulta todos los datos de un alumno
   public String consultarCV()
   {
@@ -337,6 +345,30 @@ public class GeneralController implements Serializable {
     return "verCV";
   }
   
+  //elimina ciclo (TESTEADO OK)
+  public String borrarCiclo(String s, String a)
+  {
+    RemoveDAO.removeCicloUser(FinderDAO.buscarCiclo(s), getUser(), a);
+    ciclos = FinderDAO.buscarCiclosUser(getUser());
+    return null;
+  }  
+
+  //testeado
+  public String borrarApt(String a)
+  {
+    Apt aux = FinderDAO.buscarApt(a, "");
+    RemoveDAO.removeAptUser(aux.getId_apt(), getUser());
+    aptitudes = FinderDAO.buscarAptUser(getUser());
+    return null;
+  }
+
+  public String guardarDatosPersonales()
+  {
+    System.out.println(alumnos.get(0));
+    UpdateDatosPersonalesDAO.actualizar(alumnos.get(0));
+    return null;
+  }
+
   //go to vista editarCV
   public String editarCV()
   {
@@ -348,45 +380,18 @@ public class GeneralController implements Serializable {
     return "editaCV";
   }
 
-  //go to Cambiar contraseña (TESTEADO OK)
-  public String editarPerfil()
-  {
-    return "edicionPerfil";
-  }
-
-  
-  //elimina ciclo (TESTEADO OK)
-  public String borrarCiclo(String s, String a)
-  {
-    RemoveDAO.removeCicloUser(FinderDAO.buscarCiclo(s), getUser(), a);
-    ciclos = FinderDAO.buscarCiclosUser(getUser());
-    return null;
-  }  
-
-  public String borrarApt(String a)
-  {
-    Apt aux = FinderDAO.buscarApt(a, "");
-    RemoveDAO.removeAptUser(aux.getId_apt(), getUser());
-    aptitudes = FinderDAO.buscarAptUser(getUser());
-    return null;
-  }  
   //go to vistaAlumnado
   public String retornoPrincipal()
   {
     return "vistaAlumnado.hxtml";
   }
 
-  public String crearNuevaAptitud()
+  //go to Cambiar contraseña (TESTEADO OK)
+  public String editarPerfil()
   {
-    //Por finalizar
-    return "creaAptitud";
+    return "edicionPerfil";
   }
 
-  public String crearNuevaTitulacion()
-  {
-    //Por finalizar
-    return "creaOTitulacion";
-  }
   //validate login
   public String validateUsernamePassword() 
   {

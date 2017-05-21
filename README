@@ -1,0 +1,45 @@
+Hito: Entregar aplicación completa, con versión final de usuario.
+
+	Alcance:
+	- Análisis: 80%
+	- Diseño backend: 80%
+	- Diseño frontend: 30%
+	- Despliegue: 80%
+
+
+Explicación del alcance:
+
+Respecto al diseño final de la aplicación:
+
+Por el momento, no dispongo del resultado final de la aplicación, debido a los tiempos que manejo. No he tenido la posibilidad de dedicarme a probar con los frameworks de diseño de vistas que podría haber empleado. Como destino, no obstante, estimo que emplearé JS y CSS para la decoración final. La estructura de las vistas son, realmente, las que siguen:
+
+* Vista de login: 
+	Común a alumnado y a profesorado. Siendo en ambos casos "usuario" -DNI del alumno, para el profesor se puede almacenar uno ficticio- y "password".
+* Vista de profesorado: 
+	Sencilla, a la par que funcional: Un buscador donde se inserten las 4 opciones de búsqueda que se enuncian en los requerimientos del proyecto.
+* Vista de alumnado: 
+	Dará acceso a 3 secciones -aún evalúo si eliminar una de ellas-: Actualizar contraseña, Ver CV, Editar CV.
+	En el caso de actualizar contraseña, nos resaltará 2 posibilidades en la salida -ok, o error.
+	En el caso de Ver CV, mostrará los datos maquetados completos del alumno y un botón de retorno.
+	En el caso de editar CV, mostrará los mismos datos que Ver CV, permitiendo editar el perfil del alumno.
+
+Respecto al despliegue de la aplicación:
+	La aplicación será desplegada en un servidor Jetty por el momento para las pruebas, ya que la posterior exportación a otros servidores no debería ser una complicación. En Jetty despliega al cien por cien, permitiendo realizar las pruebas necesarias por mi parte.
+
+Respecto al diseño del Backend: 
+	Aunque me ha costado en determinados momentos, estoy consiguiendo alcanzar los requerimientos citados en el enunciado general, aunque voy lento.
+
+Respecto al análisis: 
+	No he encontrado problemas para definir y concretar tanto los objetivos requeridos como la vía para alcanzarlos.
+
+En resumidas cuentas: El mayor problema que estoy teniendo es el tiempo disponible: De Lunes a viernes estoy de 8 de la mañana a diez de la noche fuera, por motivos lectivos y laborales, y los días no lectivos, he de reservar unas horas para mantener al día las obligaciones del lar.
+
+---------------------------------------------
+
+Comprobaciones para profesorado:
+
+- Modificar en caso de haber empleado una bbdd con datos distintos a los míos lo siguiente:
+	Archivo: src/main/java/com/proyecto/utilidades/DataConnect.java (línea 12) con datos coincidentes para la bbdd empleada.
+- Una vez hecho eso, desde la carpeta raiz del proyecto, realizar mvn clean install para compilación de la aplicación y mvn jetty:run para despliegue del jetty server y prueba de la interfaz. En navegador, con localhost:9999 va fino.
+
+Un saludo.
