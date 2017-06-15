@@ -14,6 +14,8 @@
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
+		<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
+
 		<h1 class="col-xs-12">Tus datos personales</h1>
 
 		<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest">
@@ -118,7 +120,8 @@
 		<h:outputText rendered="#{empty generalController.aptitudes}" value="No hay aptitudes dadas de alta aún para este alumno."/><br/>
 		
 		<h:outputText rendered="#{empty generalController.otra_titulacion}" value="No hay otras titulaciones dadas de alta aún para este alumno."/><br/>
-		<h:commandButton action="#{generalController.validateUsernamePassword}" value="Inicio"/>
-		<footer>Fdo: H</footer>
+
+		<h:link value="Volver a principal" outcome="vistaAlumnado.xhtml"/>
+		<h:panelGroup layout="block" styleClass="footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
 	</h:body>
 </html>

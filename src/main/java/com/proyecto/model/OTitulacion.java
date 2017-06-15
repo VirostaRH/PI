@@ -1,7 +1,6 @@
 package com.proyecto.model;
 
 import com.proyecto.model.Centro;
-import com.proyecto.dao.FinderDAO;
 
 public class OTitulacion
 {
@@ -9,14 +8,23 @@ public class OTitulacion
 	private int id_OTitulacion;
 	private String nombre;
 	private String descripcion;
-	private int id_centro;
+	private Centro centro;
+	private int fecha_fin;
 
-	public OTitulacion(int i, String nombre, String descripcion, String n_centro)
+	public OTitulacion()
+	{
+		this.id_OTitulacion = -1;
+		this.nombre = "";
+		this.descripcion = "";
+		this.fecha_fin = -1;
+	}
+	
+	public OTitulacion(int i, String nombre, String descripcion, int fecha_fin)
 	{
 		this.id_OTitulacion = i;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.id_centro = FinderDAO.findCentro(n_centro).getId_centro();
+		this.fecha_fin = fecha_fin;
 	}
 
 	public void setId_OTitulacion(int id)
@@ -30,8 +38,11 @@ public class OTitulacion
 	public void setDescripcion(String d){
 		this.descripcion = d;
 	}
-	public void setId_centro(int n_centro){
-		this.id_centro = n_centro;
+	public void setCentro(Centro centro){
+		this.centro = centro;
+	}
+	public void setFecha_fin(int fecha){
+		this.fecha_fin = fecha;
 	}
 	public int getId_OTitulacion(){
 		return id_OTitulacion;
@@ -42,7 +53,10 @@ public class OTitulacion
 	public String getDescripcion(){
 		return descripcion;
 	}
-	public int getId_centro(){
-		return id_centro;
+	public Centro getCentro(){
+		return centro;
+	}
+	public int getFecha_fin(){
+		return fecha_fin;
 	}
 }

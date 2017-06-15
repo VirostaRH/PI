@@ -2,9 +2,58 @@
 {
 	background-color: #F5F5DC;
 	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
-body
+* > form, * > div
 {
-	width: 80%;
+	margin-bottom: 5em;
+}
+
+form
+{
+	width: 70%;
+	padding: 0 15%;	
+}
+
+.datosPersonales
+{
+	width: 100%;
+	padding: 0;	
+}
+
+.aniadeCiclo > *
+{
+	padding-right: 2em;
+	margin-right: 5em;
+}
+
+.otrastitulaciones > input
+{
+	position: relative;
+	width: 15%;
+	padding-right: 1em;
+	margin-right: 1em;
+}
+
+td
+{
+	width:10%;
+}
+
+.borrar
+{
+	background-color: #ffc09f;
+}
+
+.guardar
+{
+	background-color: #adf7b6;
+}
+
+.header, .footer
+{
+	padding: 0, 33%;
+	text-align: center;
 }

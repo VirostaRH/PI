@@ -12,8 +12,11 @@ import javax.faces.context.*;
 import javax.servlet.http.HttpSession;
 
 import com.proyecto.dao.*;
+import com.proyecto.interfaces.*;
+
 import com.proyecto.dao.UpdatePasswdDAO;
 import com.proyecto.model.*;
+import com.proyecto.interfaces.*;
 import com.proyecto.utilidades.*;
 
 
@@ -45,12 +48,20 @@ public class GeneralController implements Serializable {
   private String otraT;
   private String descripcionOtraT;
   private String centro;
+  private String fecha_fin_ot;
 
   private ArrayList <Alumno> alumnos;
   private ArrayList <Ciclo> ciclos;
   private ArrayList <OTitulacion> otra_titulacion = new ArrayList <OTitulacion>();
   private ArrayList <Apt> aptitudes = new ArrayList();
 
+  
+  private IAlumnosCRUD alumnosCRUD = new AlumnosCRUD();
+  private IAptCRUD aptCRUD = new AptCRUD();
+  private ICentroCRUD centroCRUD = new CentroCRUD();
+  private ICiclosCRUD ciclosCRUD = new CiclosCRUD();
+  private IOTitulacionCRUD oTitulacionCRUD = new OTitulacionCRUD();
+  
 
   /*Listado de getter y setter del bean controller.*/
   /**/
@@ -220,6 +231,16 @@ public class GeneralController implements Serializable {
     return centro;
   }
 
+  public String getFecha_fin_ot()
+  {
+    return fecha_fin_ot;
+  }
+
+  public void setFecha_fin_ot(String fecha_fin)
+  {
+    this.fecha_fin_ot = fecha_fin;
+  }
+
   public String getOldPasswd() {
     return oldPasswd;
   }
@@ -280,7 +301,7 @@ public class GeneralController implements Serializable {
   public String crearBusqueda()
   {
     Busqueda b = new Busqueda (ciclo,dispo,aptitud,edad);
-    setAlumnos(FinderDAO.buscar(b));
+    setAlumnos(alumnosCRUD.buscar(b));
     return "result";
   }
 
@@ -288,11 +309,11 @@ public class GeneralController implements Serializable {
   //crea ciclo
   public String guardarCiclo()
   {
-    Ciclo cTemp = FinderDAO.buscarCiclo(ciclo);
+    Ciclo cTemp = ciclosCRUD.buscarCiclo(ciclo);
     if(!fecha_fin.equals(null) && !fecha_fin.equals(""))
     {
       cTemp.setFecha_fin(getFecha_fin());
-      if(InsertDAO.addCicloUser(cTemp, user))
+      if(ciclosCRUD.addCicloUser(cTemp, user))
         {
           ciclos.add(cTemp);
         }
@@ -309,16 +330,16 @@ public class GeneralController implements Serializable {
   {
     if(!descripcionApt.equals(""))
     {
-      Apt aptTemp = FinderDAO.buscarApt(getNombreApt(), getDescripcionApt());
+      Apt aptTemp = aptCRUD.buscarApt(getNombreApt(), getDescripcionApt());
       aptTemp.setNivel(getNivel_apt());
       if (aptTemp.getId_apt() == -1)
       {
-        InsertDAO.insertApt(getNombreApt(), getDescripcionApt());
-        aptTemp = FinderDAO.buscarApt(getNombreApt(), getDescripcionApt());
+        aptCRUD.insertApt(getNombreApt(), getDescripcionApt());
+        aptTemp = aptCRUD.buscarApt(getNombreApt(), getDescripcionApt());
       }
       else
       {
-        if (InsertDAO.addAptUser(aptTemp, getUser()))
+        if (aptCRUD.addAptUser(aptTemp, getUser()))
         {
           aptTemp.setNivel(getNivel_apt());
           aptitudes.add(aptTemp);
@@ -331,58 +352,70 @@ public class GeneralController implements Serializable {
     }
     return null;
   }
- 
 
   //go to consulta todos los datos de un alumno
   public String consultarCV()
   {
-    alumno=FinderDAO.buscarUno(user);
+    alumno=alumnosCRUD.buscarUno(user);
     alumnos = new ArrayList<Alumno>();
     alumnos.add(alumno);
-    ciclos=FinderDAO.buscarCiclosUser(user);
-    aptitudes =FinderDAO.buscarAptUser(user);
-    System.out.println(aptitudes.size());
+    ciclos=ciclosCRUD.buscarCiclosUser(user);
+    aptitudes =aptCRUD.buscarAptUser(user);
+    otra_titulacion = oTitulacionCRUD.buscarOtrasTitulacionesUser(getUser());
+    System.out.println("alumno "+alumnos.get(0)+ "\nAptitudes"+aptitudes.size()+"\nOtrasTitulaciones"+otra_titulacion.size());
     return "verCV";
   }
   
   //elimina ciclo (TESTEADO OK)
   public String borrarCiclo(String s, String a)
   {
-    RemoveDAO.removeCicloUser(FinderDAO.buscarCiclo(s), getUser(), a);
-    ciclos = FinderDAO.buscarCiclosUser(getUser());
+    ciclosCRUD.removeCicloUser(ciclosCRUD.buscarCiclo(s), getUser(), a);
+    ciclos = ciclosCRUD.buscarCiclosUser(getUser());
     return null;
   }  
 
   //testeado
   public String borrarApt(String a)
   {
-    Apt aux = FinderDAO.buscarApt(a, "");
-    RemoveDAO.removeAptUser(aux.getId_apt(), getUser());
-    aptitudes = FinderDAO.buscarAptUser(getUser());
+    Apt aux = aptCRUD.buscarApt(a, "");
+    aptCRUD.removeAptUser(aux.getId_apt(), getUser());
+    aptitudes = aptCRUD.buscarAptUser(getUser());
+    return null;
+  }
+
+  //crea OtraTitulacion
+  public String guardaOtraTitulacion()
+  {
+    Centro obj_centro = centroCRUD.findCentro(getCentro());
+    OTitulacion otraT = oTitulacionCRUD.findOT(getOtraT(), getDescripcionOtraT(), obj_centro);
+    otraT.setFecha_fin(Integer.parseInt(getFecha_fin_ot()));
+    otra_titulacion.add(otraT);
     return null;
   }
 
   public String guardarDatosPersonales()
   {
     System.out.println(alumnos.get(0));
-    UpdateDatosPersonalesDAO.actualizar(alumnos.get(0));
+    alumnosCRUD.actualizar(alumnos.get(0));
     return null;
   }
 
   //go to vista editarCV
   public String editarCV()
   {
-    alumno=FinderDAO.buscarUno(user);
+    alumno= alumnosCRUD.buscarUno(getUser());
     alumnos = new ArrayList<Alumno>();
     alumnos.add(alumno);
-    ciclos=FinderDAO.buscarCiclosUser(user);
-    aptitudes =FinderDAO.buscarAptUser(user);
+    ciclos=ciclosCRUD.buscarCiclosUser(getUser());
+    aptitudes=aptCRUD.buscarAptUser(getUser());
+    otra_titulacion = oTitulacionCRUD.buscarOtrasTitulacionesUser(getUser());
     return "editaCV";
   }
 
   //go to vistaAlumnado
   public String retornoPrincipal()
   {
+    System.out.println("Vuelta a inicio");
     return "vistaAlumnado.hxtml";
   }
 
@@ -405,7 +438,9 @@ public class GeneralController implements Serializable {
         //insertar aquí la prueba de alumno para ver si tiene cv
         return "admin";
       }
+
       return "vistaAlumnado";
+    
     } else {
       FacesContext.getCurrentInstance().addMessage(
           null,

@@ -75,7 +75,6 @@
 			<to-view-id>/vistaAlumnado.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
-
 	</navigation-rule>
 	
 	<navigation-rule>
@@ -93,6 +92,15 @@
 			<navigation-case>
 				<from-outcome>edicionPerfil</from-outcome>
 				<to-view-id>/edicionPerfil.xhtml</to-view-id>
+				<redirect/>
+			</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/verCV.xhtml</from-view-id>
+			<navigation-case>
+				<from-outcome>vistaAlumnado</from-outcome>
+				<to-view-id>/vistaAlumnado.xhtml</to-view-id>
 				<redirect/>
 			</navigation-case>
 	</navigation-rule>
