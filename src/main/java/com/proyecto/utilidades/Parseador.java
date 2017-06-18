@@ -14,16 +14,20 @@ public class Parseador{
     public static String cargaAptitudes(String[] aptitudesParaSql)
     {
     	String [] aptitudes = aptitudesParaSql;
-    	String carroSql = null;
+    	String carroSql = "";
 
         if (aptitudes.length != 0)
         {
-        	for(int i = 0; i <= aptitudes.length; i++)
-        	{
-                System.out.println("entra " + carroSql);
-        		carroSql= carroSql+"OR APTITUD.nombre_aptitud like '"+aptitudes[i]+"'";
-        	}
+            carroSql = "APTITUD.nombre_aptitud = '" + aptitudes[0] + "'";
+            if (aptitudes.length > 1)
+            {
+                for(int i = 1; i < aptitudes.length; i++)
+            	{
+            		carroSql = carroSql + " OR APTITUD.nombre_aptitud = '" + aptitudes[0] + "'";
+            	}
+            }
         }
+        System.out.println("Retorno carroSql - " + carroSql);
     	return carroSql;
     }
 

@@ -67,6 +67,7 @@ public class CentroCRUD implements ICentroCRUD
         } finally {
             DataConnect.close(con);
         }
+        System.out.println("Centro encontrado: "+c.getNombre_centro() + " "+c.getId_centro());
         return c;
     }
 
@@ -76,6 +77,7 @@ public class CentroCRUD implements ICentroCRUD
         Connection con = null;
         PreparedStatement ps = null;
         try{
+            System.out.println("Entra en findCentroById con id"+id);
             con = DataConnect.getConnection();
             ps = con.prepareStatement("Select * from centro where id_centro= ?");
             ps.setInt(1, id);

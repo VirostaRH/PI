@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<title>Resultados</title>
+		<meta author="Héctor Ruiz"/>
+		<meta charset="utf-8"/>
+		<meta name="description" content="App alumn generalController"/>
+		<h:outputStylesheet library="css" name="style.css"/>
+		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+	</h:head>
+	<h:body>
+		<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
+
+		<h1 class="col-xs-12">Ficha Alumno:</h1>
+
+		<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest">
+	   		<h:column rendered="#{alum.id_alumno != ''}">
+				<f:facet name = "header">DNI</f:facet>
+				#{alum.id_alumno}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Nombre</f:facet>
+				#{alum.nombre}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Apellido1</f:facet>
+				#{alum.apellido1}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Apellido2</f:facet>
+				#{alum.apellido2}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Fecha Nac</f:facet>
+				#{alum.fnac}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Dirección</f:facet>
+				#{alum.direccion}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Localidad</f:facet>
+				#{alum.localidad}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Provincia</f:facet>
+				#{alum.provincia}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">CP</f:facet>
+				#{alum.cp}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">TLF</f:facet>
+				#{alum.tlf}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Mail1</f:facet>
+				#{alum.email1}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Mail2</f:facet>
+				#{alum.email2}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Disponibilidad</f:facet>
+				#{alum.disponibilidad}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Observaciones</f:facet>
+				#{alum.observaciones}
+			</h:column>
+		</h:dataTable>
+		
+		<h1>Ciclos hechos.</h1>
+		
+		<h:dataTable value = "#{generalController.ciclos}" var = "c"
+			headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.ciclos}">
+			<h:column>
+				<f:facet name = "header" >Siglas del ciclo</f:facet>
+				#{c.nombre_ciclo}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Nombre del ciclo</f:facet>
+				#{c.siglas}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Fecha fin</f:facet>
+				#{c.fecha_fin}
+			</h:column>
+		</h:dataTable>
+
+
+		<h:outputText rendered="#{empty generalController.ciclos}" value="No hay ciclos dados de alta aún para este alumno."/><br/>
+			
+		<h1>Aptitudes.</h1>
+
+		<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
+			headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}">
+			<h:column>
+				<f:facet name = "header">Nombre de la aptitud</f:facet>
+				#{ap.nombre_apt}
+			</h:column>
+			<h:column>
+				<f:facet name = "header">Descripción de la aptitud</f:facet>
+				#{ap.descripcion}
+			</h:column>
+		</h:dataTable>
+
+		<h:outputText rendered="#{empty generalController.aptitudes}" value="No hay aptitudes dadas de alta aún para este alumno."/><br/>
+
+		<h2>Otras titulaciones.</h2>
+			<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
+				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}" styleClass="ot">
+				<h:column>
+					<f:facet name = "header">Otra titulación</f:facet>
+					#{otit.nombre} 
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Centro</f:facet>
+					#{otit.centro.nombre_centro} 
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Año</f:facet>
+					#{otit.fecha_fin} 
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Breve descripcion</f:facet>
+					#{otit.descripcion} 
+				</h:column>
+			</h:dataTable>
+				
+		<h:outputText rendered="#{empty generalController.otra_titulacion}" value="No hay otras titulaciones dadas de alta aún para este alumno."/><br/>
+
+		<h:link value="Volver a principal" outcome="admin.xhtml"/>
+	
+		<h:panelGroup layout="block" styleClass="footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+	</h:body>
+</html>

@@ -15,68 +15,63 @@
 	</h:head>
 	<h:body>
 		<header class="row">
-			<h1>Resultado de búsqueda</h1>
+			<h1>Resultados de búsqueda</h1>
 		</header>
-		<h:dataTable value = "#{generalController.alumnos}" var = "em"
-   			headerClass = "header"
-   			rowClasses = "rest">
-	   		<h:column>
-				<f:facet name = "header">DNI</f:facet>
-				#{em.id_alumno}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Nombre</f:facet>
-				#{em.nombre}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Apellido1</f:facet>
-				#{em.apellido1}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Apellido2</f:facet>
-				#{em.apellido2}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Fecha Nac</f:facet>
-				#{em.fnac}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Dirección</f:facet>
-				#{em.direccion}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Localidad</f:facet>
-				#{em.localidad}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Provincia</f:facet>
-				#{em.provincia}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">CP</f:facet>
-				#{em.cp}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">TLF</f:facet>
-				#{em. tlf}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Mail1</f:facet>
-				#{em.email1}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Mail2</f:facet>
-				#{em.email2}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Disponibilidad</f:facet>
-				#{em.disponibilidad}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Observaciones</f:facet>
-				#{em.observaciones}
-			</h:column>
-		</h:dataTable>
+
+		<h:form>
+			<h:dataTable value = "#{generalController.alumnos}" var = "em" headerClass = "header"
+	   			rowClasses = "rest" border="1" rendered="#{not empty generalController.alumnos}">
+				<h:column>
+					<f:facet name = "header">Nombre</f:facet>
+					<h:commandButton action="#{generalController.consultarCVprof(em.id_alumno)}" value="#{em.nombre}"/>
+
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Apellido1</f:facet>
+					#{em.apellido1}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Apellido2</f:facet>
+					#{em.apellido2}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Fecha Nac</f:facet>
+					#{em.fnac}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Localidad</f:facet>
+					#{em.localidad}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Provincia</f:facet>
+					#{em.provincia}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">CP</f:facet>
+					#{em.cp}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">TLF</f:facet>
+					#{em. tlf}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Mail1</f:facet>
+					#{em.email1}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Mail2</f:facet>
+					#{em.email2}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Disponibilidad</f:facet>
+					#{em.disponibilidad}
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Observaciones</f:facet>
+					#{em.observaciones}
+				</h:column>
+			</h:dataTable>
+			</h:form>
 		<footer>Fdo: H</footer>
 	</h:body>
 </html>

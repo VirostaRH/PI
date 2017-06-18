@@ -24,7 +24,7 @@ public class AlumnosCRUD implements IAlumnosCRUD
         String [] aptitudes = Parseador.descomprimeAptitudes(data.getAptitud());
         String valorEdad = (data.getEdad() != "") ? data.getEdad() : "67";
         String trozoCiclo = "";
-        String trozoAptitud = (aptitudes == null) ? null:Parseador.cargaAptitudes(aptitudes);
+        String trozoAptitud = (aptitudes == null) ? null:"and "+Parseador.cargaAptitudes(aptitudes);
 
         //conexión a bbdd
         Connection con = null;
@@ -35,28 +35,31 @@ public class AlumnosCRUD implements IAlumnosCRUD
 
         try {
             con = DataConnect.getConnection();
+            System.out.println("Llega a try");
             ps = con.prepareStatement("Select distinct alumno.* from ciclo inner join cursa_ciclo on ciclo.id_ciclo = cursa_ciclo.id_ciclo inner join alumno on cursa_ciclo.id_alumno = alumno.id_alumno where ciclo.siglas= ? and alumno.disponibilidad = ? and TIMESTAMPDIFF(YEAR, alumno.f_nac,CURDATE()) between 16 and ?");
+
             ps.setString(1, data.getCiclo());
             ps.setBoolean(2, data.getDispo());
             ps.setString(3, valorEdad);
 
             if (trozoAptitud != null)
                 {
-                    ps = con.prepareStatement("Select distinct alumno.* from ciclo inner join cursa_ciclo on ciclo.id_ciclo = cursa_ciclo.id_ciclo inner join alumno on cursa_ciclo.id_alumno = alumno.id_alumno where ciclo.siglas= ? and alumno.disponibilidad = ? and TIMESTAMPDIFF(YEAR, alumno.f_nac,CURDATE()) between 16 ?");
+                    ps = con.prepareStatement("Select distinct alumno.* from ciclo inner join cursa_ciclo on ciclo.id_ciclo = cursa_ciclo.id_ciclo inner join alumno on  alumno.id_alumno = cursa_ciclo.id_alumno left join adquiere_aptitud on alumno.id_alumno = adquiere_aptitud.id_alumno left join aptitud on adquiere_aptitud.id_aptitud = aptitud.id_aptitud where ciclo.siglas= ? and alumno.disponibilidad = ? and TIMESTAMPDIFF(YEAR, alumno.f_nac,CURDATE()) between 16 and ? and aptitud.nombre_aptitud is null or aptitud.nombre_aptitud = ?");
                     ps.setString(1, data.getCiclo());
                     ps.setBoolean(2, data.getDispo());
-                    ps.setString(3, trozoAptitud);
+                    ps.setString(3, valorEdad);
+                    ps.setString(4, trozoAptitud);
                 }
 
-            ResultSet rs = ps.executeQuery();
 
+
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 a.add(new Alumno(rs.getString(1),rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getString(12),rs.getBoolean(13),rs.getString(14)));
-                System.out.println(a.size());
             }
             return a;
         } catch (SQLException ex) {
-            System.out.println("Login KO-->" + ex.getMessage());
+            System.out.println("Buscar Alumnos KO-->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
@@ -82,7 +85,7 @@ public class AlumnosCRUD implements IAlumnosCRUD
             }
             return a;
         } catch (SQLException ex) {
-            System.out.println("Búsqueda KO-->" + ex.getMessage());
+            System.out.println("Búsqueda un alumno KO-->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
@@ -134,7 +137,7 @@ public class AlumnosCRUD implements IAlumnosCRUD
             }
 
         } catch (SQLException ex) {
-            System.out.println("ERROR->"+ex);
+            System.out.println(" Actualizar alumno KO->"+ex);
         } finally {
             DataConnect.close(con);
         }

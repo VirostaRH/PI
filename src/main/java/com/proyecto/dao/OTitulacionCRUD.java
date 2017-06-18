@@ -16,21 +16,24 @@ import com.proyecto.utilidades.Parseador;
 public class OTitulacionCRUD implements IOTitulacionCRUD
 {
 
-    CentroCRUD centroCRUD;
+    CentroCRUD centroCRUD = new CentroCRUD();
+    Cursa_OTCRUD cursa_OTCRUD = new Cursa_OTCRUD();
 
     public OTitulacionCRUD(){}
     
-    public OTitulacion findOT(String nombre_OT, String descripcionOt, Centro centro){
+    public OTitulacion findOT(String nombre_OT, String descripcionOt, Centro centro, String user, int fecha_fin_ot){
+
         Connection con = null;
         PreparedStatement ps = null;
 
         //retorno
         OTitulacion oTit = new OTitulacion();
-
+        System.out.println(centroCRUD.findCentroById(5));
         try {
                 con = DataConnect.getConnection();
                 ps = con.prepareStatement("Select OT.* from OT where nombre_OT = ?");
                 ps.setString(1, nombre_OT);
+                System.out.println(nombre_OT + descripcionOt + centro.getNombre_centro() + centro.getId_centro());
                 
                 ResultSet rs = ps.executeQuery();
 
@@ -38,6 +41,7 @@ public class OTitulacionCRUD implements IOTitulacionCRUD
                 {
                     oTit.setId_OTitulacion(rs.getInt("id_OT"));
                     oTit.setNombre(rs.getString("nombre_OT"));
+                    oTit.setDescripcion(rs.getString("descripcion_OT"));
                     oTit.setCentro(centroCRUD.findCentroById(rs.getInt("id_centro")));
                 }
                 else
@@ -45,45 +49,20 @@ public class OTitulacionCRUD implements IOTitulacionCRUD
                     oTit.setNombre(nombre_OT);
                     oTit.setDescripcion(descripcionOt);
                     oTit.setCentro(centro);
-                    insertOtraTitulacion(oTit);
+                    insertOtraTitulacion(oTit, user, fecha_fin_ot);
+                    cursa_OTCRUD.insertCursaOT(oTit.getId_OTitulacion(), user, fecha_fin_ot);
                 }
             } catch (SQLException ex) {
                     System.out.println("Búsqueda OT KO-->" + ex.getMessage());
                 } finally {
                     DataConnect.close(con);
                 }
+        
         return oTit;
     }
 
-    public boolean oTitulacionUser(OTitulacion ot, String user, String fecha_fin)
-    {
-        
-        OTitulacion otit = ot;
-        Connection con = null;
-        PreparedStatement ps = null;
- 
-        try{
-            con = DataConnect.getConnection();
-            
-            ps = con.prepareStatement("insert into cursa_OT set id_alumno = ?, id_OT = ?, fecha_fin = ?");
-            ps.setString(1, user);
-            ps.setInt(2, otit.getId_OTitulacion());
-            ps.setString(3, fecha_fin+":07:22");
-            int rs = ps.executeUpdate();
-            if (rs != 0) {
-                System.out.println("Insert OT ok");
-                return true;
-            }
 
-        } catch (SQLException ex) {
-            System.out.println("INSERT OT KO" + ex.getMessage());
-        } finally {
-            DataConnect.close(con);
-        }
-        return false;
-    }
-
-    public boolean insertOtraTitulacion(OTitulacion o)
+    public boolean insertOtraTitulacion(OTitulacion o, String user, int fecha_fin)
     {
         OTitulacion ot = o;
         Connection con = null;
@@ -94,10 +73,11 @@ public class OTitulacionCRUD implements IOTitulacionCRUD
             
             ps = con.prepareStatement("insert into OT set nombre_OT = ?, descripcion_OT = ?, id_centro = ?");
             ps.setString(1, ot.getNombre());
-            ps.setInt(2, ot.getId_OTitulacion());
+            ps.setString(2, ot.getDescripcion());
             ps.setInt(3, ot.getCentro().getId_centro());
             
             int rs = ps.executeUpdate();
+
             if (rs != 0) {
                 System.out.println("Insert OT ok");
                 return true;

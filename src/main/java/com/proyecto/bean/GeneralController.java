@@ -356,16 +356,29 @@ public class GeneralController implements Serializable {
   //go to consulta todos los datos de un alumno
   public String consultarCV()
   {
-    alumno=alumnosCRUD.buscarUno(user);
+    alumno=alumnosCRUD.buscarUno(getUser());
     alumnos = new ArrayList<Alumno>();
     alumnos.add(alumno);
-    ciclos=ciclosCRUD.buscarCiclosUser(user);
-    aptitudes =aptCRUD.buscarAptUser(user);
+    ciclos=ciclosCRUD.buscarCiclosUser(getUser());
+    aptitudes =aptCRUD.buscarAptUser(getUser());
     otra_titulacion = oTitulacionCRUD.buscarOtrasTitulacionesUser(getUser());
-    System.out.println("alumno "+alumnos.get(0)+ "\nAptitudes"+aptitudes.size()+"\nOtrasTitulaciones"+otra_titulacion.size());
     return "verCV";
   }
   
+  //versión profesorado
+  public String consultarCVprof(String u)
+  {
+    System.out.println("Entra en consultarCV");
+    alumno=alumnosCRUD.buscarUno(u);
+    alumnos = new ArrayList<Alumno>();
+    alumnos.add(alumno);
+    ciclos=ciclosCRUD.buscarCiclosUser(u);
+    aptitudes =aptCRUD.buscarAptUser(u);
+    otra_titulacion = oTitulacionCRUD.buscarOtrasTitulacionesUser(u);
+    System.out.println("Llega a previa a vistaCVprof");
+    return "vistaCVprof";
+  }
+
   //elimina ciclo (TESTEADO OK)
   public String borrarCiclo(String s, String a)
   {
@@ -380,16 +393,6 @@ public class GeneralController implements Serializable {
     Apt aux = aptCRUD.buscarApt(a, "");
     aptCRUD.removeAptUser(aux.getId_apt(), getUser());
     aptitudes = aptCRUD.buscarAptUser(getUser());
-    return null;
-  }
-
-  //crea OtraTitulacion
-  public String guardaOtraTitulacion()
-  {
-    Centro obj_centro = centroCRUD.findCentro(getCentro());
-    OTitulacion otraT = oTitulacionCRUD.findOT(getOtraT(), getDescripcionOtraT(), obj_centro);
-    otraT.setFecha_fin(Integer.parseInt(getFecha_fin_ot()));
-    otra_titulacion.add(otraT);
     return null;
   }
 
@@ -410,6 +413,17 @@ public class GeneralController implements Serializable {
     aptitudes=aptCRUD.buscarAptUser(getUser());
     otra_titulacion = oTitulacionCRUD.buscarOtrasTitulacionesUser(getUser());
     return "editaCV";
+  }
+
+  //crea OtraTitulacion
+  public String guardaOtraTitulacion()
+  {
+    Centro obj_centro = centroCRUD.findCentro(getCentro());
+    OTitulacion otraT = oTitulacionCRUD.findOT(getOtraT(), getDescripcionOtraT(), obj_centro, getUser(), Integer.parseInt(getFecha_fin_ot()));
+    otraT.setFecha_fin(Integer.parseInt(getFecha_fin_ot()));
+    otra_titulacion.add(otraT);
+    System.out.println("alumno "+alumnos.get(0)+ "\nAptitudes"+aptitudes.size()+"\nOtrasTitulaciones"+otra_titulacion.size());
+    return null;
   }
 
   //go to vistaAlumnado

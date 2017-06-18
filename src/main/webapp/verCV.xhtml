@@ -107,13 +107,28 @@
 			</h:column>
 		</h:dataTable>
 
-		<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
-			headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}">
-			<h:column>
-				<f:facet name = "header">Otra titulación</f:facet>
-				#{otit.siglas}>
-			</h:column>
-		</h:dataTable>
+		
+		<h2>Otras titulaciones.</h2>
+			<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
+				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}" styleClass="ot">
+				<h:column>
+					<f:facet name = "header">Otra titulación</f:facet>
+					#{otit.nombre} 
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Centro</f:facet>
+					#{otit.centro.nombre_centro} 
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Año</f:facet>
+					#{otit.fecha_fin} 
+				</h:column>
+				<h:column>
+					<f:facet name = "header">Breve descripcion</f:facet>
+					#{otit.descripcion} 
+				</h:column>
+			</h:dataTable>
+
 
 		<h:outputText rendered="#{empty generalController.ciclos}" value="No hay ciclos dados de alta aún para este alumno."/><br/>
 		

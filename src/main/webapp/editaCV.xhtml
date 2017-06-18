@@ -175,12 +175,11 @@
 					<f:facet name = "header">Breve descripcion</f:facet>
 					#{otit.descripcion} 
 				</h:column>
-				<h:column>
-					<h:commandButton value="Borrar" action="#{generalController.borrarOT(otit.nombre, otit.c.fecha_fin)}" styleClass="borrar"/>
-				</h:column>
 			</h:dataTable>
-
+		</h:form>
+		<h:form styleClass="otrastitulaciones">
 			<h:panelGroup>
+
 				<h:outputText value="Añade OT: "/>
 				<h:inputText value="#{generalController.otraT}"/>
 				
@@ -192,10 +191,12 @@
 				
 				<h:outputText value="Fecha fin"/>
 				<h:inputText value="#{generalController.fecha_fin_ot}"/>
+				<h:commandButton value="Guardar aptitud" action="#{generalController.guardaOtraTitulacion}" styleClass="guardar"/>
+
 			</h:panelGroup>
+
 		</h:form>
 		<h:form>
-		<h:commandButton value="Guardar aptitud" action="#{generalController.guardaOtraTitulacion}" styleClass="guardar"/>
 
 		<h:commandLink action="vistaAlumnado" value="Inicio"/>
 		
