@@ -107,8 +107,6 @@ public class AlumnosCRUD implements IAlumnosCRUD
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                CreadorPDF pdf = new CreadorPDF();
-                pdf.createPDF(new File("/home/xules/codigoxules/GeneratePDFFileIText.pdf"));
                 return true;
             }
             return false;

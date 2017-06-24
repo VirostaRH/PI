@@ -89,6 +89,8 @@ public class GeneralController implements Serializable {
   private ICiclosCRUD ciclosCRUD = new CiclosCRUD();
   private IOTitulacionCRUD oTitulacionCRUD = new OTitulacionCRUD();
   private ICursaOTCRUD cursaOTCRUD = new Cursa_OTCRUD();
+  
+
   //CRUD's vistas alumnos
 
   public String altaCV()
@@ -235,6 +237,19 @@ public class GeneralController implements Serializable {
     aptitudes =aptCRUD.buscarAptUser(u);
     otra_titulacion = cursaOTCRUD.buscarOtrasTitulacionesUser(u);
     return "vistaCVprof";
+  }
+
+  public String exportarCSV()
+  {
+    System.out.println("Ataca ExportarCSV con resultado ");
+    try{
+      boolean resultado = ExportarCSV.creaCSV(alumnos, ciclos, aptitudes, otra_titulacion);
+      System.out.println("Supera ExportarCSV con resultado" +resultado);
+    }catch (Exception e)
+    {
+      System.out.println("KO ExportarCSV");
+    }
+    return null;
   }
 
 //vuelta a vista principal alumnado

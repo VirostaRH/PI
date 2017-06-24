@@ -24,113 +24,114 @@
 		</header>
 		<section>
 		<article styleClass="row">
+			<h:form styleClass="col-xs-12">
 
-			<form>
-			<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.alumnos}">
-		   		<h:column>
-					<f:facet name = "header">DNI</f:facet>
-					#{alum.id_alumno}
-				</h:column>
+				<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.alumnos}">
+					
+					<h:column>
+						<f:facet name = "header">DNI</f:facet>
+						#{alum.id_alumno}
+					</h:column>
 
-				<h:column>
-					<f:facet name = "header">Nombre</f:facet>
-					#{alum.nombre}
-				</h:column>
+					<h:column>
+						<f:facet name = "header">Nombre</f:facet>
+						#{alum.nombre}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Apellido1</f:facet>
+						#{alum.apellido1}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Apellido2</f:facet>
+						#{alum.apellido2}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Fecha Nac</f:facet>
+						#{alum.fnac}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Dirección</f:facet>
+						#{alum.direccion}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Localidad</f:facet>
+						#{alum.localidad}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Provincia</f:facet>
+						#{alum.provincia}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">CP</f:facet>
+						#{alum.cp}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">TLF</f:facet>
+						#{alum.tlf}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Mail1</f:facet>
+						#{alum.email1}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Mail2</f:facet>
+						#{alum.email2}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Disponibilidad</f:facet>
+						#{alum.disponibilidad}
+					</h:column>
+					
+					<h:column>
+						<f:facet name = "header">Observaciones</f:facet>
+						#{alum.observaciones}
+					</h:column>
+				</h:dataTable>
 				
-				<h:column>
-					<f:facet name = "header">Apellido1</f:facet>
-					#{alum.apellido1}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Apellido2</f:facet>
-					#{alum.apellido2}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Fecha Nac</f:facet>
-					#{alum.fnac}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Dirección</f:facet>
-					#{alum.direccion}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Localidad</f:facet>
-					#{alum.localidad}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Provincia</f:facet>
-					#{alum.provincia}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">CP</f:facet>
-					#{alum.cp}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">TLF</f:facet>
-					#{alum.tlf}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Mail1</f:facet>
-					#{alum.email1}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Mail2</f:facet>
-					#{alum.email2}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Disponibilidad</f:facet>
-					#{alum.disponibilidad}
-				</h:column>
-				
-				<h:column>
-					<f:facet name = "header">Observaciones</f:facet>
-					#{alum.observaciones}
-				</h:column>
-			</h:dataTable>
-			
-			<h2>Ciclos</h2>
-			
-			<h:dataTable value = "#{generalController.ciclos}" var = "c"
-				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.ciclos}">
-				<h:column>
-					<f:facet name = "header" >Siglas del ciclo</f:facet>
-					#{c.nombre_ciclo}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Nombre del ciclo</f:facet>
-					#{c.siglas}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Fecha fin</f:facet>
-					#{c.fecha_fin}
-				</h:column>
-			</h:dataTable>
-			
-			<h2>Aptitudes: </h2>
+				<h2>Ciclos</h2>
 
-			<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
-				headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}">
-				<h:column>
-					<f:facet name = "header">Nombre de la aptitud</f:facet>
-					#{ap.nombre_apt}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Descripción de la aptitud</f:facet>
-					#{ap.descripcion}
-				</h:column>
-			</h:dataTable>
+				<h:dataTable value = "#{generalController.ciclos}" var = "c"
+					headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.ciclos}">
+					<h:column>
+						<f:facet name = "header" >Siglas del ciclo</f:facet>
+						#{c.nombre_ciclo}
+					</h:column>
+					<h:column>
+						<f:facet name = "header">Nombre del ciclo</f:facet>
+						#{c.siglas}
+					</h:column>
+					<h:column>
+						<f:facet name = "header">Fecha fin</f:facet>
+						#{c.fecha_fin}
+					</h:column>
+				</h:dataTable>
 
-			<h2>Otras titulaciones.</h2>
+				<h2>Aptitudes: </h2>
+
+				<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
+					headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}">
+					<h:column>
+						<f:facet name = "header">Nombre de la aptitud</f:facet>
+						#{ap.nombre_apt}
+					</h:column>
+					<h:column>
+						<f:facet name = "header">Descripción de la aptitud</f:facet>
+						#{ap.descripcion}
+					</h:column>
+				</h:dataTable>
+
+				<h2>Otras titulaciones.</h2>
 				<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
 					headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}" styleClass="ot">
 					<h:column>
@@ -150,9 +151,12 @@
 						#{otit.descripcion} 
 					</h:column>
 				</h:dataTable>
-			<h:commandButton action="#{generalController.crearBusqueda}" value="Volver atrás"/>
-			<h:commandButton action="#{generalController.logout}" value="Salir"/>
-		</form>
+
+				<h:commandButton action="#{generalController.crearBusqueda}" value="Volver atrás"/>
+				<h:commandButton action="#{generalController.exportarCSV}" value="Imprimir en excel"/>
+				<h:commandButton action="#{generalController.logout}" value="Salir"/>
+
+			</h:form>
 
 			</article>
 		</section>
