@@ -87,7 +87,6 @@ public class CiclosCRUD implements ICiclosCRUD
             int rs = ps.executeUpdate();
 
             if (rs != 0) {
-                System.out.println("Insert ok");
                 return true;
             }
 

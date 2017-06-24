@@ -5,9 +5,10 @@ import com.proyecto.model.Centro;
 import java.util.ArrayList;
 
 public interface IOTitulacionCRUD
+
 {
-    public OTitulacion findOT(String nombre_OT, String descripcionOt, Centro centro, String user, int fecha_fin_ot);
-    public boolean insertOtraTitulacion(OTitulacion o, String user, int fecha_fin);    
-    public ArrayList <OTitulacion> buscarOtrasTitulacionesUser(String user);
-    public OTitulacion removeOTUser(OTitulacion ot, String user);
+	public boolean insertOT(String nombre, String descripcion, Centro centro);
+    public boolean buscarOTbyNameAndCentro(String nombre_ot, Centro centro);
+	public OTitulacion buscarOTbyNameAndCentroObj(String nombre_ot, Centro centro, String fecha_fin);
+    public OTitulacion buscarById(int id_ot);
 }

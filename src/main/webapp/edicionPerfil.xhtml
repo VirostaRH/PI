@@ -6,18 +6,25 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Resultados</title>
+		<title>Actualizar password</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
-		<meta name="description" content="App alumn generalController"/>
+		<meta name="description" content="App alumn generalController - vista profesorado"/>
+		<h:outputStylesheet library="css" name="bootstrap.css"/>
+		<h:outputScript library="javascript" name="bootstrap.js"/>
+		<h:outputScript library="javascript" name="jquery.js"/>
 		<h:outputStylesheet library="css" name="style.css"/>
+		<h:outputScript library="javascript" name="marcajeMail.js"/>
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
-		
 	<h:body>
-		<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
-
-		<h:form class="col-xs-12">
+		<header styleClass="row">
+			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
+			<h1 styleClass="col-xs-12">Actualizar password:</h1>
+		</header>
+		<section>
+		<article styleClass="row">
+		<h:form>
 			<label for="select">
 				Aquí puedes cambiar tu password.
 			</label>
@@ -36,11 +43,15 @@
 				</tbody>
 			</table>
 			<h:commandButton action="#{generalController.actualizar}" value="Enviar"/>
-			<h:commandButton action="#{generalController.retornoPrincipal}" value="Inicio"/>
+			
+			<h:commandButton action="#{generalController.irVistaAlumnado}" value="Inicio"/>
+			
+			<h:commandButton action="#{generalController.logout}" value="Salir"/>
 		</h:form>
-		
-		<h:link value="Volver a principal" outcome="vistaAlumnado.xhtml"/>
-		
-		<h:panelGroup layout="block" styleClass="footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		</article>
+		</section>
+		<footer styleClass="row pie">
+			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		</footer>
 	</h:body>
 </html>

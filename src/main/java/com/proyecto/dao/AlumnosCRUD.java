@@ -6,12 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import org.joda.time.DateTime;
 import com.proyecto.model.*;
 import com.proyecto.interfaces.*;
 
-import com.proyecto.utilidades.DataConnect;
-import com.proyecto.utilidades.Parseador;
+import com.proyecto.utilidades.*;
 
 public class AlumnosCRUD implements IAlumnosCRUD
 {
@@ -23,7 +22,7 @@ public class AlumnosCRUD implements IAlumnosCRUD
 
         String [] aptitudes = Parseador.descomprimeAptitudes(data.getAptitud());
         String valorEdad = (data.getEdad() != "") ? data.getEdad() : "67";
-        String trozoCiclo = "";
+        String trozoCiclo = data.getCiclo();
         String trozoAptitud = (aptitudes == null) ? null:"and "+Parseador.cargaAptitudes(aptitudes);
 
         //conexión a bbdd
@@ -35,7 +34,6 @@ public class AlumnosCRUD implements IAlumnosCRUD
 
         try {
             con = DataConnect.getConnection();
-            System.out.println("Llega a try");
             ps = con.prepareStatement("Select distinct alumno.* from ciclo inner join cursa_ciclo on ciclo.id_ciclo = cursa_ciclo.id_ciclo inner join alumno on cursa_ciclo.id_alumno = alumno.id_alumno where ciclo.siglas= ? and alumno.disponibilidad = ? and TIMESTAMPDIFF(YEAR, alumno.f_nac,CURDATE()) between 16 and ?");
 
             ps.setString(1, data.getCiclo());
@@ -54,6 +52,7 @@ public class AlumnosCRUD implements IAlumnosCRUD
 
 
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
                 a.add(new Alumno(rs.getString(1),rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getString(12),rs.getBoolean(13),rs.getString(14)));
             }
@@ -92,10 +91,40 @@ public class AlumnosCRUD implements IAlumnosCRUD
         return a;
     }
 
+    public boolean comprobarExiste(String user)
+    {
+        //conexión a bbdd
+        Connection con = null;
+        PreparedStatement ps = null;
+        //retorno
+        Alumno a = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("Select * from alumno where alumno.id_alumno = ?");
+                ps.setString(1, user);
+            
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                CreadorPDF pdf = new CreadorPDF();
+                pdf.createPDF(new File("/home/xules/codigoxules/GeneratePDFFileIText.pdf"));
+                return true;
+            }
+            return false;
+        } catch (SQLException ex) {
+            System.out.println("Búsqueda un alumno KO-->" + ex.getMessage());
+        } finally {
+            DataConnect.close(con);
+        }
+        return false;
+    }
+
     public boolean actualizar(Alumno a){
         //conexión a bbdd
         Connection con = null;
         PreparedStatement ps = null;
+        
 
         String n = (a.getNombre() != "") ? a.getNombre() : "";
         String a1 = (a.getApellido1() != "") ? a.getApellido1() : "";
@@ -142,5 +171,58 @@ public class AlumnosCRUD implements IAlumnosCRUD
             DataConnect.close(con);
         }
         return false;
+    }
+
+    public Alumno altaDD (String id_alumno, String nombre, String apellido1, String apellido2, String fnac, String direccion, String localidad, int codp, String provincia, int tlf, String email1, String email2, boolean disponibilidad, String observaciones)
+    {
+        //conexión a bbdd
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        String n = nombre;
+        String a1 = apellido1;
+        String a2 = apellido2;
+        String f = fnac;
+        String d = direccion;
+        String l = localidad;
+        String p = provincia;
+        String e1 = email1;
+        String e2 = email2;
+        String o = observaciones;
+        int t = tlf;
+        int cp = codp;
+        boolean disp = disponibilidad;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("insert into alumno set nombre = ?, apellido1 = ?, apellido2 = ?, f_nac = ?, direccion = ?, localidad = ?, cp = ?, provincia = ?, telefono = ?, email = ?, email2 = ?, disponibilidad = ?, observaciones = ?, id_alumno = ?");
+            
+            ps.setString(1,n);
+            ps.setString(2,a1);
+            ps.setString(3,a2);
+            ps.setString(4,f);
+            ps.setString(5,d);
+            ps.setString(6,l);
+            ps.setInt(7,cp);
+            ps.setString(8,p);
+            ps.setInt(9,t);
+            ps.setString(10,e1);
+            ps.setString(11,e2);
+            ps.setBoolean(12,disp);
+            ps.setString(13,o);
+            ps.setString(14,id_alumno);
+
+            int rs = ps.executeUpdate();
+
+            if (rs==1) {
+                return new Alumno (id_alumno, nombre, apellido1, apellido2, fnac, direccion, localidad, cp, provincia, tlf, email1, email2, disponibilidad, observaciones);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Insertar alumno KO->"+ex);
+        } finally {
+            DataConnect.close(con);
+        }
+        return null;       
     }
 }

@@ -8,5 +8,5 @@ public interface ICentroCRUD
 {
 	public boolean insertCentro(String n);
 	public Centro findCentroById(int id);
-	public Centro findCentro(String n_centro);
+	public Centro findCentro (String n_centro);
 }

@@ -27,7 +27,6 @@ public class Parseador{
             	}
             }
         }
-        System.out.println("Retorno carroSql - " + carroSql);
     	return carroSql;
     }
 

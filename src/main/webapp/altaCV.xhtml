@@ -6,126 +6,90 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Resultados</title>
+		<title>Alta formulario alumno</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
-		<meta name="description" content="App alumn generalController"/>
+		<meta name="description" content="App alumn generalController - vista profesorado"/>
+		<h:outputStylesheet library="css" name="bootstrap.css"/>
+		<h:outputScript library="javascript" name="bootstrap.js"/>
+		<h:outputScript library="javascript" name="jquery.js"/>
 		<h:outputStylesheet library="css" name="style.css"/>
+		<h:outputScript library="javascript" name="marcajeMail.js"/>
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
-		<header class="row">
-			<h1 class="col-xs-12">Tus datos personales</h1>
+		<header styleClass="row">
+			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
+			<h1 styleClass="col-xs-12">Alta de datos personales</h1>
 		</header>
-		<h:dataTable value = "#{generalController.alumnos}" var = "em"
-   			headerClass = "header"
-   			rowClasses = "rest">
-	   		<h:column>
-				<f:facet name = "header">DNI</f:facet>
-				<h:inputText value="#{em.id_alumno}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Nombre</f:facet>
-				<h:inputText value="#{em.nombre}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Apellido1</f:facet>
-				<h:inputText value="#{em.apellido1}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Apellido2</f:facet>
-				<h:inputText value="#{em.apellido2}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Fecha Nac</f:facet>
-				<h:inputText value="#{em.fnac}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Dirección</f:facet>
-				<h:inputText value="#{em.direccion}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Localidad</f:facet>
-				<h:inputText value="#{em.localidad}"/>
-			</h:column>
-		</h:dataTable>
-		<h:dataTable value = "#{generalController.alumnos}" var = "em"
-   			headerClass = "header"
-   			rowClasses = "rest">
-			<h:column>
-				<f:facet name = "header">Provincia</f:facet>
-				<h:inputText value="#{em.provincia}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">CP</f:facet>
-				<h:inputText value="#{em.cp}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">TLF</f:facet>
-				<h:inputText value="#{em. tlf}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Mail1</f:facet>
-				<h:inputText value="#{em.email1}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Mail2</f:facet>
-				<h:inputText value="#{em.email2}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Disponibilidad</f:facet>
-				<h:inputText value="#{em.disponibilidad}"/>
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Observaciones</f:facet>
-				<h:inputText value="#{em.observaciones}"/>
-			</h:column>
-		</h:dataTable>
+		<section>
+		<article styleClass="row">
+		<h:form styleClass="datosPersonales">
+			<h2>Tus datos personales</h2>
+				DNI: #{generalController.user} 
+			<br/>
+			<label>Nombre</label>
+			<h:inputText value="#{generalController.nombre}"/>
 
-		<h1>Tus ciclos hechos.</h1>
-		
-		<h:selectOneMenu value="#{generalController.ciclo}">
-			<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
-			<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
-			<f:selectItem itemValue="ASCT" itemLabel="ASCT"></f:selectItem>
-			<f:selectItem itemValue="ASIR" itemLabel="ASIR"></f:selectItem>
-			<f:selectItem itemValue="EVA" itemLabel="EVA"></f:selectItem>
-			<f:selectItem itemValue="GA" itemLabel="GA"></f:selectItem>
-			<f:selectItem itemValue="IEA" itemLabel="IEA"></f:selectItem>
-			<f:selectItem itemValue="MCO" itemLabel="MCO"></f:selectItem>
-			<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
-			<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
-		</h:selectOneMenu>
-		
-		<h:inputText value = "#{generalController.fecha_fin}"/>
+			<br/>
+			<label>Apellido1</label>
+			<h:inputText value="#{generalController.apellido1}"/>
 
-		<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
-			headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}">
-			<h:column>
-				<f:facet name = "header">Nombre de la aptitud</f:facet>
-				#{ap.nombre_apt}
-			</h:column>
-			<h:column>
-				<f:facet name = "header">Descripción de la aptitud</f:facet>
-				#{ap.descripcion_apt}
-			</h:column>
-		</h:dataTable>
+			<br/>
+			<label>Apellido2</label>
+			<h:inputText value="#{generalController.apellido2}"/>
 
-		<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
-			headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}">
-			<h:column>
-				<f:facet name = "header">Otra titulación</f:facet>
-				#{otit.siglas}>
-			</h:column>
-		</h:dataTable>
+			<br/>
+			<label>Fecha Nac</label>
+			<h:inputText value="#{generalController.fnac}"/>
 
-		<h:outputText rendered="#{empty generalController.ciclos}" value="No hay ciclos dados de alta aún para este alumno."/><br/>
-		
-		<h:outputText rendered="#{empty generalController.aptitudes}" value="No hay aptitudes dadas de alta aún para este alumno."/><br/>
-		
-		<h:outputText rendered="#{empty generalController.otra_titulacion}" value="No hay otras titulaciones dadas de alta aún para este alumno."/><br/>
-		<h:commandButton onclick="history.go(-1)" value="Volver"/>
-		<h:commandButton action="#{generalController.retornoPrincipal}" value="Inicio"/>
-		<footer>Fdo: H</footer>
+			<br/>
+			<label>Dirección</label>
+			<h:inputText value="#{generalController.direccion}"/>
+
+			<br/>
+			<label>Localidad</label>
+			<h:inputText value="#{generalController.localidad}"/>
+
+			<br/>
+			<label>Provincia</label>
+			<h:inputText value="#{generalController.provincia}"/>
+
+			<br/>
+			<label>CP</label>
+			<h:inputText value="#{generalController.cp}"/>
+
+			<br/>
+			<label>TLF</label>
+			<h:inputText value="#{generalController.tlf}"/>
+
+			<br/>
+			<label>Mail1</label>
+			<h:inputText value="#{generalController.email1}"/>
+
+			<br/>
+			<label>Mail2</label>
+			<h:inputText value="#{generalController.email2}"/>
+
+			<br/>
+			<label>Disponibilidad</label>
+
+			<h:selectBooleanCheckbox value="#{generalController.disponibilidad}"></h:selectBooleanCheckbox>
+
+			<br/>
+			<label>Observaciones</label>
+			<h:inputText value="#{generalController.observaciones}"/>
+	
+			<h:commandButton value="Guardar" action="#{generalController.darAltaDeCV}" styleClass="guardar"/>
+		</h:form>
+		<h:form>
+			<h:commandButton action="#{generalController.irVistaAlumnado}" value="Inicio"/>
+			<h:commandButton action="#{generalController.logout}" value="Salir"/>
+		</h:form>
+	</article>
+		</section>
+		<footer styleClass="row pie">
+			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		</footer>
 	</h:body>
 </html>

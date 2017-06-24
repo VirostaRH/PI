@@ -6,27 +6,45 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Resultados</title>
+		<title>Resultado de búsqueda</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
-		<meta name="description" content="App alumn generalController"/>
+		<meta name="description" content="App alumn generalController - vista profesorado"/>
+		<h:outputStylesheet library="css" name="bootstrap.css"/>
+		<h:outputScript library="javascript" name="bootstrap.js"/>
+		<h:outputScript library="javascript" name="jquery.js"/>
 		<h:outputStylesheet library="css" name="style.css"/>
+		<h:outputScript library="javascript" name="marcajeMail.js"/>
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
-		<h:form>
-			<h2>GUPOC:</h2>
+		<header>
+			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
+			<h1 styleClass="col-xs-12">Resultados de tu búsqueda</h1>
+		</header>
+		<section>
+		<article styleClass="row">
+		<h:form styleClass="col-xs-12">
 			<h:outputText value="Username"/>
 			<h:inputText id="username" value="#{generalController.user}"></h:inputText>
 			<h:message for="username"></h:message>
-			<br></br><br></br>
+			<br></br>
+			<br></br>
 			
 			<h:outputText value="Password"/>
 			<h:inputSecret id="password" value="#{generalController.pwd}"></h:inputSecret>
 			<h:message for="password"></h:message>
-			<br></br><br></br>
+			<br></br>
+			<br></br>
 			
-			<h:commandButton action="#{generalController.validateUsernamePassword}" value="Login"></h:commandButton>
+			<h:commandButton action="#{generalController.validateUsernamePassword}" value="Logarse"></h:commandButton>
+			
+			<h:commandButton action="#{generalController.createUser}" value="Registrar"></h:commandButton>
 		</h:form>
+		</article>
+		</section>
+		<footer styleClass="row pie">
+			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		</footer>
 	</h:body>
 </html>

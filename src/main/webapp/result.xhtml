@@ -6,25 +6,30 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Resultados</title>
+		<title>Resultado de búsqueda</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
-		<meta name="description" content="App alumn generalController"/>
+		<meta name="description" content="App alumn generalController - vista profesorado"/>
+		<h:outputStylesheet library="css" name="bootstrap.css"/>
+		<h:outputScript library="javascript" name="bootstrap.js"/>
+		<h:outputScript library="javascript" name="jquery.js"/>
 		<h:outputStylesheet library="css" name="style.css"/>
+		<h:outputScript library="javascript" name="marcajeMail.js"/>
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
-		<header class="row">
-			<h1>Resultados de búsqueda</h1>
+		<header>
+			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
+			<h1 styleClass="col-xs-12">Resultados de tu búsqueda</h1>
 		</header>
+		<section>
+		<article styleClass="row">
+		<h:form styleClass="col-xs-12">
+			<h:dataTable value = "#{generalController.lista_alumnos_busqueda}" var = "em" headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.lista_alumnos_busqueda}">
 
-		<h:form>
-			<h:dataTable value = "#{generalController.alumnos}" var = "em" headerClass = "header"
-	   			rowClasses = "rest" border="1" rendered="#{not empty generalController.alumnos}">
 				<h:column>
 					<f:facet name = "header">Nombre</f:facet>
 					<h:commandButton action="#{generalController.consultarCVprof(em.id_alumno)}" value="#{em.nombre}"/>
-
 				</h:column>
 				<h:column>
 					<f:facet name = "header">Apellido1</f:facet>
@@ -56,11 +61,11 @@
 				</h:column>
 				<h:column>
 					<f:facet name = "header">Mail1</f:facet>
-					#{em.email1}
+					<h:outputText id="mailForm" value="#{em.email1}"/>
 				</h:column>
 				<h:column>
 					<f:facet name = "header">Mail2</f:facet>
-					#{em.email2}
+					<h:outputText id="mailForm2" value="#{em.email2}"/>
 				</h:column>
 				<h:column>
 					<f:facet name = "header">Disponibilidad</f:facet>
@@ -71,7 +76,19 @@
 					#{em.observaciones}
 				</h:column>
 			</h:dataTable>
-			</h:form>
-		<footer>Fdo: H</footer>
+
+			<h:outputText value="Listado de mails" styleClass="separadorArriba"/>
+			<br/>
+			<h:inputTextarea cols="100" rows="3"/>
+			<br/>
+			<h:button value="envia" styleClass="enviar"/>
+			<h:commandButton action="#{generalController.returnToAdmin}" value="Buscar de nuevo" styleClass=""/>
+			<h:commandButton action="#{generalController.logout}" value="Salir" styleClass=""/>
+		</h:form>
+		</article>
+		</section>
+		<footer>
+			<h:panelGroup layout="block" styleClass="pie"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		</footer>
 	</h:body>
 </html>

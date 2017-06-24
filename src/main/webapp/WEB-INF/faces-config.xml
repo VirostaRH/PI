@@ -10,6 +10,14 @@
 	</managed-bean>
 
 	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>admin</from-outcome>
@@ -20,26 +28,13 @@
 			<to-view-id>/vistaAlumnado.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome></from-outcome>
+			<from-outcome>login</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
-	</navigation-rule>
-
-	<navigation-rule>
-		<from-view-id>/admin.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>result</from-outcome>
-			<to-view-id>/result.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	
-	<navigation-rule>
-		<from-view-id>/result.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>vistaCVprof</from-outcome>
-			<to-view-id>/vistaCVprof.xhtml</to-view-id>
+			<from-outcome>altaUsuario</from-outcome>
+			<to-view-id>/altaUsuario.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
@@ -48,7 +43,6 @@
 		<navigation-case>
 			<from-outcome>verCV</from-outcome>
 			<to-view-id>/verCV.xhtml</to-view-id>
-			<redirect/>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>edicionPerfil</from-outcome>
@@ -75,13 +69,8 @@
 			<redirect/>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome></from-outcome>
-			<to-view-id>/editaCV.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
 			<from-outcome>vistaAlumnado</from-outcome>
 			<to-view-id>/vistaAlumnado.xhtml</to-view-id>
-			<redirect/>
 		</navigation-case>
 	</navigation-rule>
 	
@@ -109,15 +98,61 @@
 			<navigation-case>
 				<from-outcome>vistaAlumnado</from-outcome>
 				<to-view-id>/vistaAlumnado.xhtml</to-view-id>
-				<redirect/>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>login</from-outcome>
+				<to-view-id>/login.xhtml</to-view-id>
 			</navigation-case>
 	</navigation-rule>
-	
+
+	<navigation-rule>
+		<from-view-id>/altaCV.xhtml</from-view-id>
+			<navigation-case>
+				<from-outcome>vistaAlumnado</from-outcome>
+				<to-view-id>/vistaAlumnado.xhtml</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>login</from-outcome>
+				<to-view-id>/login.xhtml</to-view-id>
+			</navigation-case>
+	</navigation-rule>
+
+
 	<navigation-rule>
 		<from-view-id>/loginKo.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>edicionPerfil</from-outcome>
 			<to-view-id>/edicionPerfil.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/admin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>result</from-outcome>
+			<to-view-id>/result.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/result.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>vistaCVprof</from-outcome>
+			<to-view-id>/vistaCVprof.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>admin</from-outcome>
+			<to-view-id>/admin.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/vistaCVprof.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>result</from-outcome>
+			<to-view-id>/result.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>

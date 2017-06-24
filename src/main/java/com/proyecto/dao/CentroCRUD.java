@@ -34,7 +34,7 @@ public class CentroCRUD implements ICentroCRUD
             }
 
         } catch (SQLException ex) {
-            System.out.println("CENTRO KO" + ex.getMessage());
+            System.out.println("insert centro ko" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
@@ -42,6 +42,7 @@ public class CentroCRUD implements ICentroCRUD
     }
 
     public Centro findCentro(String n_centro){
+        
         Centro c = new Centro();
         //conexión a bbdd
         Connection con = null;
@@ -63,21 +64,21 @@ public class CentroCRUD implements ICentroCRUD
                 }
             }
         } catch (SQLException ex) {
-            System.out.println("Login KO-->" + ex.getMessage());
+            System.out.println("Centro findCentro KO-->" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
-        System.out.println("Centro encontrado: "+c.getNombre_centro() + " "+c.getId_centro());
+        
         return c;
     }
 
     public Centro findCentroById(int id){
+        
         Centro c = new Centro();
         //conexión a bbdd
         Connection con = null;
         PreparedStatement ps = null;
         try{
-            System.out.println("Entra en findCentroById con id"+id);
             con = DataConnect.getConnection();
             ps = con.prepareStatement("Select * from centro where id_centro= ?");
             ps.setInt(1, id);
@@ -88,11 +89,10 @@ public class CentroCRUD implements ICentroCRUD
                 c.setNombre_centro(rs.getString("nombre_centro"));
             }
         } catch (SQLException ex) {
-            System.out.println("Login KO-->" + ex.getMessage());
+            System.out.println("find centro by id ko" + ex.getMessage());
         } finally {
             DataConnect.close(con);
         }
         return c;
     }
-  
 }

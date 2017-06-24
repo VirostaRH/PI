@@ -30,7 +30,6 @@ public class AptCRUD implements IAptCRUD
             int rs = ps.executeUpdate();
 
             if (rs != 0) {
-                System.out.println("Entra en insertDao y resultado a insert ok");
                 return true;
             }
 
@@ -39,7 +38,6 @@ public class AptCRUD implements IAptCRUD
         } finally {
             DataConnect.close(con);
         }
-        System.out.println("Entra en insertDao y resultado en insert ko");
         return false;
     } 
 
@@ -89,7 +87,6 @@ public class AptCRUD implements IAptCRUD
             int rs = ps.executeUpdate();
 
             if (rs != 0) {
-                System.out.println("Delete ok");
                 return true;
             }
 
@@ -146,11 +143,9 @@ public class AptCRUD implements IAptCRUD
 
             if (rs.next()) {
                 a = new Apt(rs.getInt("id_aptitud"), rs.getString("nombre_aptitud"), rs.getString("descripcion"));
-                System.out.println("Entra en finder y hay ResultSet");
             }
             else
             {
-                System.out.println("Entra en insertDao");
                 insertApt(nombre_apt, descripcionApt);
                 a = buscarApt(nombre_apt, descripcionApt);
             }

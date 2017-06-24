@@ -6,26 +6,35 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Resultados</title>
+		<title>Menú inicio</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
-		<meta name="description" content="App alumn generalController"/>
+		<meta name="description" content="App alumn generalController - vista profesorado"/>
+		<h:outputStylesheet library="css" name="bootstrap.css"/>
+		<h:outputScript library="javascript" name="bootstrap.js"/>
+		<h:outputScript library="javascript" name="jquery.js"/>
 		<h:outputStylesheet library="css" name="style.css"/>
+		<h:outputScript library="javascript" name="marcajeMail.js"/>
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
-		<header class="row">
-			<h1>Bienvenido</h1>
+		<header styleClass="row">
+			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
+			<h1 styleClass="col-xs-12">Menú alumnado</h1>
 		</header>
-		<section class="row">
-			<article>
+		<section>
+		<article styleClass="row">
 				<h:form>
 					<h:commandButton action="#{generalController.consultarCV}" value="Consultar tu CV"/>
-					<h:commandButton action="#{generalController.editarCV}" value="Editar tu CV"/>
+					<h:commandButton action="#{generalController.editarCV}" value="Editar tu CV" rendered="#{generalController.existeCV}"/>
+					<h:commandButton action="#{generalController.altaCV}" value="Crea tu CV" rendered="#{!generalController.existeCV}"/>
 					<h:commandButton action="#{generalController.editarPerfil}" value="Editar perfil de usuario"/>
+					<h:commandButton action="#{generalController.logout}" value="Salir"/>
 				</h:form>
-			</article>
+		</article>
 		</section>
-		<footer>Fdo: H</footer>
+		<footer styleClass="row pie">
+			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		</footer>
 	</h:body>
 </html>
