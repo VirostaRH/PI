@@ -342,6 +342,11 @@ public class GeneralController implements Serializable {
     }
   }
 
+  public String lOPD()
+  {
+    return "LOPD";
+  }
+
   /*Getter y setter del generalController.*/
   
   public void setMsg(String msg)

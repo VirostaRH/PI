@@ -9,16 +9,18 @@ function cargaEventos()
 
 function cargaMails()
 {
-	$("span").click(function(e){
+	$(".mailForm").click(function(e){
 		if(!$("textarea").val().includes($(this).text()))
 		{
 			if($("textarea").val() == "")
 			{
 				$("textarea").val($(this).text());
+				console.log($("textarea").val() + "lo hace");
 			}
 			else
 			{
-				$("textarea").val($("textarea").val() + "," + $(this).text());
+				$("textarea").val($("textarea").val() + ", " + $(this).text());
+				console.log($("textarea").val() + "lo hace");
 			}
 		}
 	});

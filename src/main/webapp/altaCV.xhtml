@@ -6,90 +6,95 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Alta formulario alumno</title>
+		<title>Alta dd personales</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
-		<meta name="description" content="App alumn generalController - vista profesorado"/>
+		<meta name="description" content="App alumn generalController - vista alumnado"/>
 		<h:outputStylesheet library="css" name="bootstrap.css"/>
-		<h:outputScript library="javascript" name="bootstrap.js"/>
 		<h:outputScript library="javascript" name="jquery.js"/>
+		<h:outputScript library="javascript" name="bootstrap.js"/>
 		<h:outputStylesheet library="css" name="style.css"/>
 		<h:outputScript library="javascript" name="marcajeMail.js"/>
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
 		<header styleClass="row">
-			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
-			<h1 styleClass="col-xs-12">Alta de datos personales</h1>
+			<h:panelGroup layout="block" styleClass="header col-xs-12">
+				<h:panelGroup layout="block" styleClass="row">
+					<h:graphicImage value="resources/img/classroom.jpg" styleClass="col-xs-12"/>
+					<h1 styleClass="col-xs-12">Alta de datos personales</h1>
+				</h:panelGroup>
+			</h:panelGroup>
 		</header>
-		<section>
-		<article styleClass="row">
-		<h:form styleClass="datosPersonales">
-			<h2>Tus datos personales</h2>
-				DNI: #{generalController.user} 
-			<br/>
-			<label>Nombre</label>
-			<h:inputText value="#{generalController.nombre}"/>
+		<section styleClass="row">
+			<article styleClass="col-xs-12 col-xs-offset-12">
+				<h:form styleClass="row">					
+					<h:panelGroup layout="block" styleClass="header col-xs-6 col-xs-offset-4">
+						<h:panelGroup layout="block" styleClass="header col-xs-2">Nombre</h:panelGroup>
+						<h:inputText value="#{generalController.nombre}"/>
 
-			<br/>
-			<label>Apellido1</label>
-			<h:inputText value="#{generalController.apellido1}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2"> Apellido1</h:panelGroup>
+						<h:inputText value="#{generalController.apellido1}"/>
 
-			<br/>
-			<label>Apellido2</label>
-			<h:inputText value="#{generalController.apellido2}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2"> Apellido2</h:panelGroup>
+						<h:inputText value="#{generalController.apellido2}"/>
 
-			<br/>
-			<label>Fecha Nac</label>
-			<h:inputText value="#{generalController.fnac}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2"> Fecha Nac</h:panelGroup>
+						<h:inputText value="#{generalController.fnac}"/>
 
-			<br/>
-			<label>Dirección</label>
-			<h:inputText value="#{generalController.direccion}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2"> Dirección</h:panelGroup>
+						<h:inputText value="#{generalController.direccion}"/>
 
-			<br/>
-			<label>Localidad</label>
-			<h:inputText value="#{generalController.localidad}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2"> Localidad</h:panelGroup>
+						<h:inputText value="#{generalController.localidad}"/>
 
-			<br/>
-			<label>Provincia</label>
-			<h:inputText value="#{generalController.provincia}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2">Provincia</h:panelGroup>
+						<h:inputText value="#{generalController.provincia}"/>
 
-			<br/>
-			<label>CP</label>
-			<h:inputText value="#{generalController.cp}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2">CP</h:panelGroup>
+						<h:inputText value="#{generalController.cp}"/>
 
-			<br/>
-			<label>TLF</label>
-			<h:inputText value="#{generalController.tlf}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2">TLF</h:panelGroup>
+						<h:inputText value="#{generalController.tlf}"/>
 
-			<br/>
-			<label>Mail1</label>
-			<h:inputText value="#{generalController.email1}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2">Mail1</h:panelGroup>
+						<h:inputText value="#{generalController.email1}"/>
 
-			<br/>
-			<label>Mail2</label>
-			<h:inputText value="#{generalController.email2}"/>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2">Mail2</h:panelGroup>
+						<h:inputText value="#{generalController.email2}"/>
 
-			<br/>
-			<label>Disponibilidad</label>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2">Disponibilidad</h:panelGroup>
 
-			<h:selectBooleanCheckbox value="#{generalController.disponibilidad}"></h:selectBooleanCheckbox>
+						<h:selectBooleanCheckbox value="#{generalController.disponibilidad}"></h:selectBooleanCheckbox>
 
-			<br/>
-			<label>Observaciones</label>
-			<h:inputText value="#{generalController.observaciones}"/>
-	
-			<h:commandButton value="Guardar" action="#{generalController.darAltaDeCV}" styleClass="guardar"/>
-		</h:form>
-		<h:form>
-			<h:commandButton action="#{generalController.irVistaAlumnado}" value="Inicio"/>
-			<h:commandButton action="#{generalController.logout}" value="Salir"/>
-		</h:form>
-	</article>
+						<br/>
+						<h:panelGroup layout="block" styleClass="header col-xs-2">Observaciones</h:panelGroup>
+						<h:inputText value="#{generalController.observaciones}"/>
+						<br/>
+						<h:commandButton value="Guardar" action="#{generalController.darAltaDeCV}" styleClass="guardar col-xs-2 col-xs-offset-3 margenedTop"/>
+					</h:panelGroup>
+				</h:form>
+				<h:form styleClass="row margenedTop">					
+					<h:panelGroup layout="block" styleClass="header col-xs-6 col-xs-offset-4">				
+						<h:commandButton action="#{generalController.irVistaAlumnado}" value="Inicio" styleClass="col-xs-2 col-xs-offset-2 margenedTop"/>
+						<h:commandButton action="#{generalController.logout}" value="Salir" styleClass="col-xs-2 margenedTop"/>
+					</h:panelGroup>
+				</h:form>
+			</article>
 		</section>
-		<footer styleClass="row pie">
-			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		<footer styleClass="row">
+			<h:panelGroup layout="block" styleClass="col-xs-12 footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
 		</footer>
 	</h:body>
 </html>

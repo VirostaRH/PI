@@ -18,82 +18,101 @@
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
-		<header>
-			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
-			<h1 styleClass="col-xs-12">Edita tus datos</h1>
+		<header styleClass="row">
+			<h:panelGroup layout="block" styleClass="header col-xs-12">
+				<h:graphicImage value="resources/img/classroom.jpg"/>
+				<h2 styleClass="col-xs-12">Edita tus datos</h2>
+			</h:panelGroup>
 		</header>
 		<section styleClass="row">
 			<article styleClass="col-xs-12">
 				<h:panelGroup styleClass="row">
 					<h:form styleClass="col-xs-12">
-						<h2>Tus datos personales</h2>
-						<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" rendered="#{alum.id_alumno != ''}">
-					   		<h:column>
-								<f:facet name = "header">DNI</f:facet>
-								#{alum.id_alumno}
-							</h:column>
-							<h:column class="row">
-								<f:facet name = "header">Nombre</f:facet>
-								<h:inputText value="#{alum.nombre}" styleClass="css1"/>
-							</h:column>
-							<h:column class="row">
-								<f:facet name = "header">Apellido1</f:facet>
-								<h:inputText value="#{alum.apellido1}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">Apellido2</f:facet>
-								<h:inputText value="#{alum.apellido2}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">Fecha Nac</f:facet>
-								<h:inputText value="#{alum.fnac}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">Dirección</f:facet>
-								<h:inputText value="#{alum.direccion}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">Localidad</f:facet>
-								<h:inputText value="#{alum.localidad}"/>
-							</h:column>
-						</h:dataTable>
-						<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" rendered="#{alum.id_alumno != ''}">
-							<h:column>
-								<f:facet name = "header">Provincia</f:facet>
-								<h:inputText value="#{alum.provincia}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">CP</f:facet>
-								<h:inputText value="#{alum.cp}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">TLF</f:facet>
-								<h:inputText value="#{alum.tlf}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">Mail1</f:facet>
-								<h:inputText value="#{alum.email1}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">Mail2</f:facet>
-								<h:inputText value="#{alum.email2}"/>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">Disponibilidad</f:facet>
-								<h:selectBooleanCheckbox value="#{alum.disponibilidad}">
-					        	</h:selectBooleanCheckbox>
-							</h:column>
-							<h:column>
-								<f:facet name = "header">Observaciones</f:facet>
-								<h:inputText value="#{alum.observaciones}"/>
-							</h:column>
-						</h:dataTable>
-						<h:commandButton value="Actualizar" action="#{generalController.guardarDatosPersonales}" styleClass="guardar"/>
+						<h:panelGroup styleClass="row">
+							<h:commandButton action="#{generalController.irVistaAlumnado}" value="Inicio" styleClass="col-xs-1 col-xs-offset-5"/>
+							<h:commandButton action="#{generalController.logout}" value="Salir" styleClass="col-xs-1"/>
+						</h:panelGroup>
 					</h:form>
 				</h:panelGroup>
 				<h:panelGroup styleClass="row">
-					<h:form styleClass="ciclos col-xs-12">
-						<h2>Tus ciclos hechos.</h2>
+					<h:form styleClass="col-xs-12">
+						<h:panelGroup styleClass="row">
+							<center><h2>Tus datos personales</h2></center>
+							<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" rendered="#{alum.id_alumno != ''}" styleClass="col-xs-12">
+							
+								<h:column>
+									<f:facet name = "header">DNI</f:facet>
+									#{alum.id_alumno}
+								</h:column>
+								
+								<h:column>
+									<f:facet name = "header">Nombre</f:facet>
+									<h:inputText value="#{alum.nombre}" styleClass="css1"/>
+								</h:column>
+								
+								<h:column>
+									<f:facet name = "header">Apellido1</f:facet>
+									<h:inputText value="#{alum.apellido1}"/>
+								</h:column>
+								
+								<h:column>
+									<f:facet name = "header">Apellido2</f:facet>
+									<h:inputText value="#{alum.apellido2}"/>
+								</h:column>
+
+								<h:column>
+									<f:facet name = "header">Fecha Nac</f:facet>
+									<h:inputText value="#{alum.fnac}"/>
+								</h:column>
+
+								<h:column>
+									<f:facet name = "header">Dirección</f:facet>
+									<h:inputText value="#{alum.direccion}"/>
+								</h:column>
+
+								<h:column>
+									<f:facet name = "header">Localidad</f:facet>
+									<h:inputText value="#{alum.localidad}"/>
+								</h:column>
+							</h:dataTable>
+							<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" rendered="#{alum.id_alumno != ''}" styleClass="col-xs-12">
+								<h:column>
+									<f:facet name = "header">Provincia</f:facet>
+									<h:inputText value="#{alum.provincia}"/>
+								</h:column>
+								<h:column>
+									<f:facet name = "header">CP</f:facet>
+									<h:inputText value="#{alum.cp}"/>
+								</h:column>
+								<h:column>
+									<f:facet name = "header">TLF</f:facet>
+									<h:inputText value="#{alum.tlf}"/>
+								</h:column>
+								<h:column>
+									<f:facet name = "header">Mail1</f:facet>
+									<h:inputText value="#{alum.email1}"/>
+								</h:column>
+								<h:column>
+									<f:facet name = "header">Mail2</f:facet>
+									<h:inputText value="#{alum.email2}"/>
+								</h:column>
+								<h:column>
+									<f:facet name = "header">Disponibilidad</f:facet>
+									<h:selectBooleanCheckbox value="#{alum.disponibilidad}">
+							    	</h:selectBooleanCheckbox>
+								</h:column>
+								<h:column>
+									<f:facet name = "header">Observaciones</f:facet>
+									<h:inputText value="#{alum.observaciones}"/>
+								</h:column>
+							</h:dataTable>
+							<h:commandButton value="Actualizar" action="#{generalController.guardarDatosPersonales}" styleClass="guardar col-xs-2 col-xs-offset-5 margenedTop"/>
+						</h:panelGroup>
+					</h:form>
+				</h:panelGroup>
+				<h:panelGroup styleClass="row">
+					<h:form styleClass="ciclos col-xs-6">
+						<center><h2>Tus ciclos hechos.</h2></center>
 						<h:panelGroup styleClass="row">
 							<h:dataTable value = "#{generalController.ciclos}" var = "c"
 								headerClass = "col-xs-3" rowClass="col-xs-3" border="1" rendered="#{not empty generalController.ciclos}" styleClass="col-xs-12">
@@ -115,11 +134,37 @@
 							</h:dataTable>
 						</h:panelGroup>
 					</h:form>
+					<h:form styleClass="col-xs-6">
+						<center><h2>Tus aptitudes.</h2></center>
+						<h:panelGroup styleClass="row">
+							<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
+								headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}" styleClass="col-xs-12">
+								<h:column>
+									<f:facet name = "header">Nombre de la aptitud</f:facet>
+									#{ap.nombre_apt}
+								</h:column>
+								<h:column>
+									<f:facet name = "header">Descripción de la aptitud</f:facet>
+									#{ap.descripcion}
+								</h:column>
+								<h:column>
+									<f:facet name = "header">Lvl de la aptitud</f:facet>
+									<h:outputText rendered="#{ap.nivel == 1}" value="Bajo"/>
+									<h:outputText rendered="#{ap.nivel == 2}" value="Medio"/>
+									<h:outputText rendered="#{ap.nivel == 3}" value="Alto"/>
+								</h:column>
+								<h:column>
+									<f:facet name = "header">Actualizar</f:facet>
+									<h:commandButton value="Borrar" action="#{generalController.borrarApt(ap.nombre_apt)}" styleClass="borrar"/>
+								</h:column>
+							</h:dataTable>
+						</h:panelGroup>
+					</h:form>
 				</h:panelGroup>
 				<h:panelGroup styleClass="row">
-					<h:form styleClass="col-xs-12">
+					<h:form styleClass="col-xs-6">
 						<h:panelGroup styleClass="row">
-							<h:outputText value="Añade ciclo" styleClass="col-xs-2"/>
+							<h2>Añade ciclo</h2>
 								<h:selectOneMenu value="#{generalController.ciclo}" styleClass="col-xs-2">
 									<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
 									<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
@@ -132,55 +177,29 @@
 									<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
 									<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
 								</h:selectOneMenu>
-								<h:outputText value="Añade año de finalización" styleClass="col-xs-2"/>
+								<h:outputText value="Añade año finalización" styleClass="col-xs-4"/>
 								<h:inputText value="#{generalController.fecha_fin}" styleClass="col-xs-2"/>
 								<h:commandButton value="Guardar" action="#{generalController.guardarCiclo}" styleClass="guardar col-xs-2"/>							
 						</h:panelGroup>
 					</h:form>
-				</h:panelGroup>
-				<h:panelGroup styleClass="row">
-
-					<h:form styleClass="col-xs-12">
-						<h2>Tus aptitudes.</h2>
-							<h:panelGroup styleClass="row">
-								<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
-									headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}" styleClass="col-xs-12">
-									<h:column>
-										<f:facet name = "header">Nombre de la aptitud</f:facet>
-										#{ap.nombre_apt}
-									</h:column>
-									<h:column>
-										<f:facet name = "header">Descripción de la aptitud</f:facet>
-										#{ap.descripcion}
-									</h:column>
-									<h:column>
-										<f:facet name = "header">Lvl de la aptitud</f:facet>
-										<h:outputText rendered="#{ap.nivel == 1}" value="Bajo"/>
-										<h:outputText rendered="#{ap.nivel == 2}" value="Medio"/>
-										<h:outputText rendered="#{ap.nivel == 3}" value="Alto"/>
-									</h:column>
-									<h:column>
-										<f:facet name = "header">Actualizar</f:facet>
-										<h:commandButton value="Borrar" action="#{generalController.borrarApt(ap.nombre_apt)}" styleClass="borrar"/>
-									</h:column>
-								</h:dataTable>
-							</h:panelGroup>
-						<h:panelGroup styleClass="row">
-							<h:outputText value="Añade aptitud:" styleClass="col-xs-2"/>
+					<h:form styleClass="col-xs-6">
+					<h:panelGroup styleClass="row">
+						<h2>Añade Aptitud</h2>
+							<h:outputText value="Nombre:" styleClass="col-xs-2"/>
 							<h:inputText  value="#{generalController.nombreApt}" styleClass="col-xs-2"/>
-							<h:outputText value="Inserte descripción de aptitud: " styleClass="col-xs-2"/>
+							<h:outputText value="Descr. y nivel" styleClass="col-xs-3"/>
 							<h:inputText  value="#{generalController.descripcionApt}" styleClass="col-xs-2"/>
 							<h:selectOneMenu value="#{generalController.nivel_apt}" styleClass="col-xs-2">
 								<f:selectItem itemValue="1" itemLabel="Bajo"></f:selectItem>
 								<f:selectItem itemValue="2" itemLabel="Medio"></f:selectItem>
 								<f:selectItem itemValue="3" itemLabel="Alto"></f:selectItem>
 							</h:selectOneMenu>
-							<h:commandButton value="Guardar aptitud" action="#{generalController.guardarApt}" styleClass="guardar col-xs-2"/>
+							<h:commandButton value="Ok!" action="#{generalController.guardarApt}" styleClass="guardar col-xs-1"/>
 						</h:panelGroup>
 					</h:form>
 				</h:panelGroup>
 				<h:panelGroup styleClass="row">
-					<h:form styleClass="col-xs-12">
+					<h:form styleClass="col-xs-8 col-xs-offset-2">
 						<h2>Otras titulaciones.</h2>
 						<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
 							headerClass = "col-xs-3" colClasses="col-xs-3" border="1" rendered="#{not empty generalController.otra_titulacion}" styleClass="row">
@@ -207,26 +226,24 @@
 						</h:form>
 					</h:panelGroup>
 					<h:panelGroup styleClass="row">
-						<h:form styleClass="col-xs-12">
-							<h:panelGroup>
-								<h:outputText value="Añade OT: "/>
-								<h:inputText value="#{generalController.otraT}"/>
-								<h:outputText value="Descripción:"/>
-								<h:inputText value="#{generalController.descripcionOtraT}"/>
-								<h:outputText value="Centro"/>
-								<h:inputText  value="#{generalController.centro}"/>
-								<h:outputText value="Fecha fin"/>
-								<h:inputText value="#{generalController.fecha_fin_ot}"/>
-								<h:commandButton value="Guardar aptitud" action="#{generalController.guardaOtraTitulacion}" styleClass="guardar"/>
+						<center><h2>Añade OT:</h2></center>
+						<h:form styleClass="col-xs-8 col-xs-offset-2">
+							<h:panelGroup styleClass="row">
+								<h:outputText value="Nombre:" styleClass="col-xs-2"/>
+								<h:inputText value="#{generalController.otraT}" styleClass="col-xs-2"/>
+								<h:outputText value="Desc:" styleClass="col-xs-1"/>
+								<h:inputText value="#{generalController.descripcionOtraT}" styleClass="col-xs-2"/>
+								<h:outputText value="Centro" styleClass="col-xs-1"/>
+								<h:inputText  value="#{generalController.centro}" styleClass="col-xs-2"/>
+								<h:outputText value="Año fin" styleClass="col-xs-1"/>
+								<h:inputText value="#{generalController.fecha_fin_ot}" styleClass="col-xs-1"/>
 							</h:panelGroup>
+						<h:panelGroup styleClass="row">
+							<h:commandButton value="Guardar aptitud" action="#{generalController.guardaOtraTitulacion}" styleClass="guardar col-xs-offset-5 col-xs-2"/>
+						</h:panelGroup>
 						</h:form>
 					</h:panelGroup>
-					<h:panelGroup styleClass="row">
-						<h:form>
-							<h:commandButton action="#{generalController.irVistaAlumnado}" value="Inicio"/>
-							<h:commandButton action="#{generalController.logout}" value="Salir"/>
-						</h:form>
-					</h:panelGroup>
+
 			</article>
 		</section>
 		<footer styleClass="row pie">

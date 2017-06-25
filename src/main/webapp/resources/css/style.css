@@ -4,31 +4,25 @@
 	background-color: #F5F5DC;
 }
 
-h2, td, th, header, footer
+.center, header, footer, .header
 {
 	text-align: center;
 	vertical-align: center;
 }
 
-td, th
-{
-	padding: 0;
-	margin: 0;
-}
-
-h2
+.login, .footer
 {
 	padding-top: 2em;
 }
 
-header
+.margenedTop
 {
-	border: solid 1px black;
+	margin-top: 16px;
 }
 
-footer
+.separadorArriba
 {
-	padding-top: 5%;
+	margin-top: 2em;
 }
 
 .borrar
@@ -41,9 +35,9 @@ footer
 	background-color: #adf7b6;
 }
 
-.separadorArriba
+input:focus
 {
-	margin-top: 2em;
+	background-color: white;
 }
 
 article

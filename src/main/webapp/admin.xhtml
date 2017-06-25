@@ -19,67 +19,62 @@
 	</h:head>
 	<h:body>
 		<header styleClass="row">
-			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
-			<h1 styleClass="col-xs-12">Creación de búsqueda</h1>
-		</header>
-		<section>
-		<article styleClass="row">
-			<h:panelGroup layout="block" styleClass="col-xs-12">
-				Bienvenido a la selección de alumnado por ciclo superior. Por favor, inserte los filtros que desee aplicar:
-			</h:panelGroup>
-			<h:panelGroup layout="block" styleClass="col-xs-12 centrarTabla">
-				<h:form styleClass="row">
-				<h:panelGrid columns="5" border="1" columnClasses="col-xs-offset1 col-xs-2,col-xs-2,col-xs-2,col-xs-3,col-xs-2">
-					<h:panelGroup>Ciclo</h:panelGroup>
-					<h:panelGroup>Disponibilidad</h:panelGroup>
-					<h:panelGroup>Edad</h:panelGroup>
-					<h:panelGroup>Aptitudes</h:panelGroup>
-					<h:panelGroup>Ejecutar Búsqueda</h:panelGroup>
-					<h:panelGroup>
-							<h:selectOneMenu value="#{generalController.ciclo}">
-								<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
-								<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
-								<f:selectItem itemValue="ASCT" itemLabel="ASCT"></f:selectItem>
-								<f:selectItem itemValue="ASIR" itemLabel="ASIR"></f:selectItem>
-								<f:selectItem itemValue="EVA" itemLabel="EVA"></f:selectItem>
-								<f:selectItem itemValue="GA" itemLabel="GA"></f:selectItem>
-								<f:selectItem itemValue="IEA" itemLabel="IEA"></f:selectItem>
-								<f:selectItem itemValue="MCO" itemLabel="MCO"></f:selectItem>
-								<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
-								<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
-							</h:selectOneMenu>
-					</h:panelGroup>
-					<h:panelGroup>
-						<h:selectBooleanCheckbox value="#{generalController.dispo}">
-						</h:selectBooleanCheckbox>
-					</h:panelGroup>
-					<h:panelGroup>
-						<h:inputText value="#{generalController.edad}"></h:inputText>
-					</h:panelGroup>
-					<h:panelGroup>
-						<h:inputText value="#{generalController.aptitud}"></h:inputText>
-					</h:panelGroup>
-					<h:panelGroup>
-						<h:commandButton action="#{generalController.crearBusqueda}" value="Buscar"/>
-					</h:panelGroup>
-			</h:panelGrid>
-
-			<h:panelGroup layout="block" styleClass="col-xs-12">
+			<h:panelGroup layout="block" styleClass="header col-xs-12">
 				<h:panelGroup layout="block" styleClass="row">
-					<h:panelGroup layout="block" styleClass="col-xs-offset-5 col-xs-2">
-						<h:commandButton action="#{generalController.logout}" value="Logout"/>
-					</h:panelGroup>
+					<h:graphicImage value="resources/img/classroom.jpg" styleClass="col-xs-12"/>
+					<h1 styleClass="col-xs-12">Creación de búsqueda</h1>
 				</h:panelGroup>
 			</h:panelGroup>
+		</header>
+		<section styleClass="row">
+			<article styleClass="col-xs-12">
+				<h:form styleClass="row">
+					<h:panelGroup layout="block" styleClass="col-xs-12 center margenedTop">
+						Bienvenido a la selección de alumnado por ciclo superior. Por favor, inserte los filtros que desee aplicar:
+					</h:panelGroup>
 
-			</h:form>
-			</h:panelGroup>
-
-			
-		</article>
+					<h:panelGrid columns="5" border="1" columnClasses="col-xs-offset1 col-xs-2,col-xs-2,col-xs-2,col-xs-3,col-xs-2" styleClass="col-xs-12 center margenedTop">
+						<h:panelGroup>Ciclo</h:panelGroup>
+						<h:panelGroup>Disponibilidad</h:panelGroup>
+						<h:panelGroup>Edad</h:panelGroup>
+						<h:panelGroup>Aptitudes</h:panelGroup>
+						<h:panelGroup>Ejecutar Búsqueda</h:panelGroup>
+						<h:panelGroup>
+								<h:selectOneMenu value="#{generalController.ciclo}">
+									<f:selectItem itemValue="DAW" itemLabel="DAW"></f:selectItem>
+									<f:selectItem itemValue="APSD" itemLabel="APSD"></f:selectItem>
+									<f:selectItem itemValue="ASCT" itemLabel="ASCT"></f:selectItem>
+									<f:selectItem itemValue="ASIR" itemLabel="ASIR"></f:selectItem>
+									<f:selectItem itemValue="EVA" itemLabel="EVA"></f:selectItem>
+									<f:selectItem itemValue="GA" itemLabel="GA"></f:selectItem>
+									<f:selectItem itemValue="IEA" itemLabel="IEA"></f:selectItem>
+									<f:selectItem itemValue="MCO" itemLabel="MCO"></f:selectItem>
+									<f:selectItem itemValue="SMR" itemLabel="SMR"></f:selectItem>
+									<f:selectItem itemValue="STI" itemLabel="STI"></f:selectItem>
+								</h:selectOneMenu>
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:selectBooleanCheckbox value="#{generalController.dispo}">
+							</h:selectBooleanCheckbox>
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:inputText value="#{generalController.edad}"></h:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:inputText value="#{generalController.aptitud}"></h:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:commandButton action="#{generalController.crearBusqueda}" value="Buscar"/>
+						</h:panelGroup>
+					</h:panelGrid>
+					<h:panelGroup layout="block" styleClass="col-xs-12 center margenedTop">
+						<h:commandButton action="#{generalController.logout}" value="Logout"/>
+					</h:panelGroup>
+				</h:form>
+			</article>
 		</section>
-		<footer styleClass="row pie">
-			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		<footer styleClass="row pie ">
+			<h:panelGroup layout="block" styleClass="col-xs-12 footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
 		</footer>
 	</h:body>
 </html>

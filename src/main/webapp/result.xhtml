@@ -10,85 +10,90 @@
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
 		<meta name="description" content="App alumn generalController - vista profesorado"/>
-		<h:outputStylesheet library="css" name="bootstrap.css"/>
-		<h:outputScript library="javascript" name="bootstrap.js"/>
 		<h:outputScript library="javascript" name="jquery.js"/>
+		<h:outputScript library="javascript" name="bootstrap.js"/>
+		<h:outputStylesheet library="css" name="bootstrap.css"/>
 		<h:outputStylesheet library="css" name="style.css"/>
 		<h:outputScript library="javascript" name="marcajeMail.js"/>
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
-		<header>
-			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
-			<h1 styleClass="col-xs-12">Resultados de tu búsqueda</h1>
+		<header styleClass="row">
+			<h:panelGroup layout="block" styleClass="header col-xs-12">
+				<h:panelGroup layout="block" styleClass="row">
+					<h:graphicImage value="resources/img/classroom.jpg" styleClass="col-xs-12"/>
+					<h1 styleClass="col-xs-12">Resultados de búsqueda</h1>
+				</h:panelGroup>
+					<section>
+						<article styleClass="row container-fluid">
+							<h:panelGroup styleClass="col-xs-12">
+								<h:form styleClass="row">
+									<h:dataTable value = "#{generalController.lista_alumnos_busqueda}" var = "em" headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.lista_alumnos_busqueda}" styleClass="col-xs-12 margenedTop">
+										<h:column>
+										<f:facet name = "header">Nombre</f:facet>
+										<h:commandButton action="#{generalController.consultarCVprof(em.id_alumno)}" value="#{em.nombre}"/>
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Apellido1</f:facet>
+										#{em.apellido1}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Apellido2</f:facet>
+										#{em.apellido2}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Fecha Nac</f:facet>
+										#{em.fnac}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Localidad</f:facet>
+										#{em.localidad}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Provincia</f:facet>
+										#{em.provincia}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">CP</f:facet>
+										#{em.cp}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">TLF</f:facet>
+										#{em. tlf}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Mail1</f:facet>
+										<h:outputText styleClass="mailForm" value="#{em.email1}"/>
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Mail2</f:facet>
+										<h:outputText styleClass="mailForm2" value="#{em.email2}"/>
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Disponibilidad</f:facet>
+										#{em.disponibilidad}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Observaciones</f:facet>
+										#{em.observaciones}
+										</h:column>
+										</h:dataTable>
+										<br/>
+										<h:inputTextarea cols="100" rows="3" styleClass="margenedTop"/>
+										<br/>
+										<h:button value="envia" styleClass="enviar margenedTop
+											"/>
+										<h:commandButton action="#{generalController.returnToAdmin}" value="Buscar de nuevo" styleClass="margenedTop"/>
+										<h:commandButton action="#{generalController.logout}" value="Salir" styleClass="margenedTop"/>
+								</h:form>
+							</h:panelGroup>
+						</article>
+					</section>
+				<footer styleClass="row pie ">
+					<h:panelGroup layout="block" styleClass="col-xs-12 footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+				</footer>
+			</h:panelGroup>
 		</header>
-		<section>
-		<article styleClass="row">
-		<h:form styleClass="col-xs-12">
-			<h:dataTable value = "#{generalController.lista_alumnos_busqueda}" var = "em" headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.lista_alumnos_busqueda}">
 
-				<h:column>
-					<f:facet name = "header">Nombre</f:facet>
-					<h:commandButton action="#{generalController.consultarCVprof(em.id_alumno)}" value="#{em.nombre}"/>
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Apellido1</f:facet>
-					#{em.apellido1}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Apellido2</f:facet>
-					#{em.apellido2}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Fecha Nac</f:facet>
-					#{em.fnac}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Localidad</f:facet>
-					#{em.localidad}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Provincia</f:facet>
-					#{em.provincia}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">CP</f:facet>
-					#{em.cp}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">TLF</f:facet>
-					#{em. tlf}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Mail1</f:facet>
-					<h:outputText id="mailForm" value="#{em.email1}"/>
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Mail2</f:facet>
-					<h:outputText id="mailForm2" value="#{em.email2}"/>
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Disponibilidad</f:facet>
-					#{em.disponibilidad}
-				</h:column>
-				<h:column>
-					<f:facet name = "header">Observaciones</f:facet>
-					#{em.observaciones}
-				</h:column>
-			</h:dataTable>
-
-			<h:outputText value="Listado de mails" styleClass="separadorArriba"/>
-			<br/>
-			<h:inputTextarea cols="100" rows="3"/>
-			<br/>
-			<h:button value="envia" styleClass="enviar"/>
-			<h:commandButton action="#{generalController.returnToAdmin}" value="Buscar de nuevo" styleClass=""/>
-			<h:commandButton action="#{generalController.logout}" value="Salir" styleClass=""/>
-		</h:form>
-		</article>
-		</section>
-		<footer>
-			<h:panelGroup layout="block" styleClass="pie"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
-		</footer>
 	</h:body>
 </html>

@@ -6,162 +6,180 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Búsqueda</title>
+		<title>Ver CV un alumno</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
 		<meta name="description" content="App alumn generalController - vista profesorado"/>
-		<h:outputStylesheet library="css" name="bootstrap.css"/>
-		<h:outputScript library="javascript" name="bootstrap.js"/>
 		<h:outputScript library="javascript" name="jquery.js"/>
+		<h:outputScript library="javascript" name="bootstrap.js"/>
+		<h:outputStylesheet library="css" name="bootstrap.css"/>
 		<h:outputStylesheet library="css" name="style.css"/>
 		<h:outputScript library="javascript" name="marcajeMail.js"/>
 		<h:link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 	</h:head>
 	<h:body>
-		<header styleClass="row">
-			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
-			<h1 styleClass="col-xs-12">Ver el cv:</h1>
-		</header>
-		<section>
-		<article styleClass="row">
-			<h:form styleClass="col-xs-12">
+		<h:panelGroup styleClass="row">
+			<h:panelGroup layout="block" styleClass="header col-xs-12">
+				<h:panelGroup layout="block" styleClass="row">
+					<h:graphicImage value="resources/img/classroom.jpg" styleClass="col-xs-12"/>
+					<h1 styleClass="col-xs-12">Viendo CV de #{generalController.alumnos.get(0).getNombre()} #{generalController.alumnos.get(0).getApellido1()}</h1>
+				</h:panelGroup>
 
-				<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.alumnos}">
-					
-					<h:column>
-						<f:facet name = "header">DNI</f:facet>
-						#{alum.id_alumno}
-					</h:column>
+				<section>
+					<article styleClass="row">
+						<h2>Datos personales</h2>
+						<h:dataTable value = "#{generalController.alumnos}" var = "alum" headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.alumnos}" styleClass="margenedTop col-xs-12">
+							<h:column>
+								<f:facet name = "header">DNI</f:facet>
+								#{alum.id_alumno}
+							</h:column>
 
-					<h:column>
-						<f:facet name = "header">Nombre</f:facet>
-						#{alum.nombre}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Apellido1</f:facet>
-						#{alum.apellido1}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Apellido2</f:facet>
-						#{alum.apellido2}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Fecha Nac</f:facet>
-						#{alum.fnac}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Dirección</f:facet>
-						#{alum.direccion}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Localidad</f:facet>
-						#{alum.localidad}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Provincia</f:facet>
-						#{alum.provincia}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">CP</f:facet>
-						#{alum.cp}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">TLF</f:facet>
-						#{alum.tlf}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Mail1</f:facet>
-						#{alum.email1}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Mail2</f:facet>
-						#{alum.email2}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Disponibilidad</f:facet>
-						#{alum.disponibilidad}
-					</h:column>
-					
-					<h:column>
-						<f:facet name = "header">Observaciones</f:facet>
-						#{alum.observaciones}
-					</h:column>
-				</h:dataTable>
-				
-				<h2>Ciclos</h2>
+							<h:column>
+								<f:facet name = "header">Nombre</f:facet>
+								#{alum.nombre}
+							</h:column>
 
-				<h:dataTable value = "#{generalController.ciclos}" var = "c"
-					headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.ciclos}">
-					<h:column>
-						<f:facet name = "header" >Siglas del ciclo</f:facet>
-						#{c.nombre_ciclo}
-					</h:column>
-					<h:column>
-						<f:facet name = "header">Nombre del ciclo</f:facet>
-						#{c.siglas}
-					</h:column>
-					<h:column>
-						<f:facet name = "header">Fecha fin</f:facet>
-						#{c.fecha_fin}
-					</h:column>
-				</h:dataTable>
+							<h:column>
+								<f:facet name = "header">Apellido1</f:facet>
+								#{alum.apellido1}
+							</h:column>
 
-				<h2>Aptitudes: </h2>
+							<h:column>
+								<f:facet name = "header">Apellido2</f:facet>
+								#{alum.apellido2}
+							</h:column>
 
-				<h:dataTable value = "#{generalController.aptitudes}" var = "ap"
-					headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}">
-					<h:column>
-						<f:facet name = "header">Nombre de la aptitud</f:facet>
-						#{ap.nombre_apt}
-					</h:column>
-					<h:column>
-						<f:facet name = "header">Descripción de la aptitud</f:facet>
-						#{ap.descripcion}
-					</h:column>
-				</h:dataTable>
+							<h:column>
+								<f:facet name = "header">Fecha Nac</f:facet>
+								#{alum.fnac}
+							</h:column>
 
-				<h2>Otras titulaciones.</h2>
-				<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
-					headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}" styleClass="ot">
-					<h:column>
-						<f:facet name = "header">Otra titulación</f:facet>
-						#{otit.nombre} 
-					</h:column>
-					<h:column>
-						<f:facet name = "header">Centro</f:facet>
-						#{otit.centro.nombre_centro} 
-					</h:column>
-					<h:column>
-						<f:facet name = "header">Año</f:facet>
-						#{otit.fecha_fin} 
-					</h:column>
-					<h:column>
-						<f:facet name = "header">Breve descripcion</f:facet>
-						#{otit.descripcion} 
-					</h:column>
-				</h:dataTable>
+							<h:column>
+								<f:facet name = "header">Dirección</f:facet>
+								#{alum.direccion}
+							</h:column>
 
-				<h:commandButton action="#{generalController.crearBusqueda}" value="Volver atrás"/>
-				<h:commandButton action="#{generalController.exportarCSV}" value="Imprimir en excel"/>
-				<h:commandButton action="#{generalController.logout}" value="Salir"/>
+							<h:column>
+								<f:facet name = "header">Localidad</f:facet>
+								#{alum.localidad}
+							</h:column>
 
-			</h:form>
+							<h:column>
+								<f:facet name = "header">Provincia</f:facet>
+								#{alum.provincia}
+							</h:column>
 
-			</article>
-		</section>
-		<footer styleClass="row pie">
-			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
-		</footer>
+							<h:column>
+								<f:facet name = "header">CP</f:facet>
+								#{alum.cp}
+							</h:column>
+
+							<h:column>
+								<f:facet name = "header">TLF</f:facet>
+								#{alum.tlf}
+							</h:column>
+
+							<h:column>
+								<f:facet name = "header">Mail1</f:facet>
+								#{alum.email1}
+							</h:column>
+
+							<h:column>
+								<f:facet name = "header">Mail2</f:facet>
+								#{alum.email2}
+							</h:column>
+
+							<h:column>
+								<f:facet name = "header">Disponibilidad</f:facet>
+								#{alum.disponibilidad}
+							</h:column>
+
+							<h:column>
+								<f:facet name = "header">Observaciones</f:facet>
+								#{alum.observaciones}
+							</h:column>
+						</h:dataTable>
+
+						<h:panelGroup styleClass="row">
+							<h:panelGroup styleClass="col-xs-6 center">
+								<h:panelGroup styleClass="row">
+									<h2 styleClass="center margenedTop">Ciclos</h2>
+									<h:dataTable value = "#{generalController.ciclos}" var = "c"
+									headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.ciclos}" styleClass="col-xs-12 center margenedTop">
+										<h:column>
+										<f:facet name = "header" >Siglas del ciclo</f:facet>
+										#{c.nombre_ciclo}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Nombre del ciclo</f:facet>
+										#{c.siglas}
+										</h:column>
+										<h:column>
+										<f:facet name = "header">Fecha fin</f:facet>
+										#{c.fecha_fin}
+										</h:column>
+									</h:dataTable>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup styleClass="col-xs-6 center">
+								<h:panelGroup styleClass="row">
+									<h2 styleClass="center margenedTop">Aptitudes: </h2>
+									<h:dataTable value = "#{generalController.aptitudes}" var = "ap" headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.aptitudes}" styleClass="center col-xs-12 margenedTop">
+										<h:column>
+											<f:facet name = "header">Nombre de la aptitud</f:facet>
+											#{ap.nombre_apt}
+										</h:column>
+										<h:column>
+											<f:facet name = "header">Descripción de la aptitud</f:facet>
+											#{ap.descripcion}
+										</h:column>
+									</h:dataTable>
+								</h:panelGroup>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-xs-12 center">
+								<h2 styleClass="center margenedTop">Otras titulaciones.</h2>
+								<h:panelGroup styleClass="row">
+									<h:dataTable value = "#{generalController.otra_titulacion}" var = "otit"
+										headerClass = "header" rowClasses = "rest" border="1" rendered="#{not empty generalController.otra_titulacion}" styleClass="ot col-xs-12 center">
+										<h:column styleClass="center">
+											<f:facet name = "header">Otra titulación</f:facet>
+											#{otit.nombre} 
+										</h:column>
+										<h:column>
+											<f:facet name = "header">Centro</f:facet>
+											#{otit.centro.nombre_centro} 
+										</h:column>
+										<h:column>
+											<f:facet name = "header">Año</f:facet>
+											#{otit.fecha_fin} 
+										</h:column>
+										<h:column>
+											<f:facet name = "header">Breve descripcion</f:facet>
+											#{otit.descripcion} 
+										</h:column>
+									</h:dataTable>
+								</h:panelGroup>
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:form styleClass="col-xs-12">
+						</h:form>
+					</article>
+					<article>
+					<h:form styleClass="row">
+						<h:panelGroup styleClass="col-xs-4 col-xs-offset-4">
+							<h:commandButton action="#{generalController.crearBusqueda}" value="Volver atrás"/>
+							<h:commandButton action="#{generalController.exportarCSV}" value="Imprimir en excel"/>
+							<h:commandButton action="#{generalController.logout}" value="Salir"/>
+						</h:panelGroup>
+					</h:form>
+
+					</article>
+				</section>
+				<footer styleClass="row pie ">
+					<h:panelGroup layout="block" styleClass="col-xs-12 footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+				</footer>
+			</h:panelGroup>
+		</h:panelGroup>
 	</h:body>
 </html>

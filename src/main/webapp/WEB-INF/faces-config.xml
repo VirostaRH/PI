@@ -8,14 +8,6 @@
 	    <managed-bean-class>com.proyecto.model.Alumno</managed-bean-class>
 	    <managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
-
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>login</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 	
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
@@ -36,7 +28,20 @@
 			<from-outcome>altaUsuario</from-outcome>
 			<to-view-id>/altaUsuario.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>LOPD</from-outcome>
+			<to-view-id>/LOPD.XHTML</to-view-id>
+		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/LOPD.XHTML</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	
 	<navigation-rule>
 		<from-view-id>/vistaAlumnado.xhtml</from-view-id>

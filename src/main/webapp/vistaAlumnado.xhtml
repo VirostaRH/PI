@@ -6,7 +6,7 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Menú inicio</title>
+		<title>Menu alumnado</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
 		<meta name="description" content="App alumn generalController - vista profesorado"/>
@@ -19,22 +19,28 @@
 	</h:head>
 	<h:body>
 		<header styleClass="row">
-			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
-			<h1 styleClass="col-xs-12">Menú alumnado</h1>
+			<h:panelGroup layout="block" styleClass="header col-xs-12">
+				<h:panelGroup layout="block" styleClass="row">
+					<h:graphicImage value="resources/img/classroom.jpg" styleClass="col-xs-12"/>
+					<h1 styleClass="col-xs-12">Menu alumnado:</h1>
+				</h:panelGroup>
+			</h:panelGroup>
 		</header>
-		<section>
-		<article styleClass="row">
-				<h:form>
-					<h:commandButton action="#{generalController.consultarCV}" value="Consultar tu CV"/>
-					<h:commandButton action="#{generalController.editarCV}" value="Editar tu CV" rendered="#{generalController.existeCV}"/>
-					<h:commandButton action="#{generalController.altaCV}" value="Crea tu CV" rendered="#{!generalController.existeCV}"/>
-					<h:commandButton action="#{generalController.editarPerfil}" value="Editar perfil de usuario"/>
-					<h:commandButton action="#{generalController.logout}" value="Salir"/>
+		<section styleClass="row">
+			<article styleClass="col-xs-12">
+				<h:form styleClass="row">
+					<h:panelGroup styleClass="col-xs-4 col-xs-offset-4 margenedTop">
+						<h:commandButton action="#{generalController.consultarCV}" value="Ver tus datos"/>
+						<h:commandButton action="#{generalController.editarCV}" value="Editar tu CV" rendered="#{generalController.existeCV}"/>
+						<h:commandButton action="#{generalController.altaCV}" value="Alta de datos" rendered="#{!generalController.existeCV}"/>
+						<h:commandButton action="#{generalController.editarPerfil}" value="Editar password"/>
+						<h:commandButton action="#{generalController.logout}" value="Salir"/>
+					</h:panelGroup>
 				</h:form>
-		</article>
+			</article>
 		</section>
-		<footer styleClass="row pie">
-			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		<footer styleClass="row margenedTop">
+			<h:panelGroup layout="block" styleClass="col-xs-12 footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
 		</footer>
 	</h:body>
 </html>

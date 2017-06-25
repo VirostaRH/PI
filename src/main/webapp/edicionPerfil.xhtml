@@ -6,7 +6,7 @@
 	xmlns:jsf="http://java.sun.com/jsf/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head>
-		<title>Actualizar password</title>
+		<title>Búsqueda</title>
 		<meta author="Héctor Ruiz"/>
 		<meta charset="utf-8"/>
 		<meta name="description" content="App alumn generalController - vista profesorado"/>
@@ -19,39 +19,50 @@
 	</h:head>
 	<h:body>
 		<header styleClass="row">
-			<h:panelGroup layout="block" styleClass="header"><h:graphicImage value="resources/img/classroom.jpg"/></h:panelGroup>
-			<h1 styleClass="col-xs-12">Actualizar password:</h1>
+			<h:panelGroup layout="block" styleClass="header col-xs-12">
+				<h:panelGroup layout="block" styleClass="row">
+					<h:graphicImage value="resources/img/classroom.jpg" styleClass="col-xs-12"/>
+					<h1 styleClass="col-xs-12">Cambio de password</h1>
+				</h:panelGroup>
+			</h:panelGroup>
 		</header>
-		<section>
-		<article styleClass="row">
-		<h:form>
-			<label for="select">
-				Aquí puedes cambiar tu password.
-			</label>
-			<table>
-				<thead>
-					<td>Password
-					</td>
-				</thead>
-				<tbody>
-					<td>
-						<h:inputText value="#{generalController.oldPasswd}"></h:inputText>
-					</td>
-					<td>
-						<h:inputText value="#{generalController.newPasswd}"></h:inputText>
-					</td>
-				</tbody>
-			</table>
-			<h:commandButton action="#{generalController.actualizar}" value="Enviar"/>
-			
-			<h:commandButton action="#{generalController.irVistaAlumnado}" value="Inicio"/>
-			
-			<h:commandButton action="#{generalController.logout}" value="Salir"/>
-		</h:form>
-		</article>
+		<section styleClass="row">
+			<article styleClass="col-xs-12">
+				<h:panelGroup styleClass="row">
+					<h:form styleClass="col-xs-6 col-xs-offset-3">
+						<h:panelGroup styleClass="row">
+							<span styleClass="col-xs-12">
+								<center>Aquí puedes cambiar tu password.</center>
+							</span>
+						</h:panelGroup>
+						<h:panelGroup styleClass="row">
+							<h:panelGroup styleClass="col-xs-3 col-xs-offset-3">
+								<span class="pass">Vieja pass:</span>
+								<br/>
+								<span class="pass">Nueva pass:</span>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-xs-6">
+								<h:inputText value="#{generalController.oldPasswd}"/>
+								<h:inputText value="#{generalController.newPasswd}"/>
+							</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup styleClass="row">
+							<h:panelGroup styleClass="col-xs-4 col-xs-offset-4">
+								<h:commandButton action="#{generalController.actualizar}" value="Enviar"/>
+								
+								<h:commandButton action="#{generalController.irVistaAlumnado}" value="Inicio"/>
+								
+								<h:commandButton action="#{generalController.logout}" value="Salir"/>
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:form>
+
+				</h:panelGroup>
+			</article>
 		</section>
-		<footer styleClass="row pie">
-			<h:panelGroup layout="block" styleClass="col-xs-12"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
+		<footer styleClass="row pie ">
+			<h:panelGroup layout="block" styleClass="col-xs-12 footer"><h:graphicImage value="resources/img/footer.png"/></h:panelGroup>
 		</footer>
 	</h:body>
 </html>

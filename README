@@ -1,22 +1,11 @@
-Alcance:
-- Análisis: 97%
-- Diseño backend: 97%
-- Diseño frontend: 70%
-- Despliegue: 90%
 
-Explicación del alcance:
+Despliegue de la app:
 
-- Análisis: Pendiente finalizar exportación a PDF.
-- Diseño backend: Dependiente de análisis.
-- Diseño frontend: Empleado bootstrap en conjunto a vistas xhtml.
-- Despliegue: Desde mvn creamos un jetty-server. Despliega ok.
+- Volcar fichero filename.SQL en MySQL -o importar mediante: mysqldump -uroot -p -hlocalhost PROYECTO < FILENAME.sql
+- Desplegar aplicación empaquetada en TOMEE o desplegarla mediante la ejecución del comando mvn jetty:run en la raiz de la carpeta descomprimida.
+- Acceder a principal de aplicación a través de navegador a través de dirección http://localhost:9999 en caso de ser desplegada en el maven embebido o en el puerto configurado a tal efecto para TOMEE.
 
-
-
-
-
------------------------------------------------
-
+---------------------------------------------------
 
 Comprobaciones para profesorado:
 
